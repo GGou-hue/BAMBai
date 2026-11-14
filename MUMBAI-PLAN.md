@@ -296,3 +296,8 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   Kannada+Latin assets (stylization-level, unreadable at gameplay distance) + 18 kept
   Bangalore-content assets (pinned pairs) - fix paths: surgical text patching or regeneration;
   NOT started (user decision on budget).
+
+## Session 7 — pinned art patched (Mumbai text)
+- 10 pinned Bangalore-content assets surgically patched (art kept, text regions repainted): SHOP-01/02/15/16/22/28/36/39 + BLR-BAR-01 + HRD-11. New names match code labels (Merwani's Irani Darshini, BAMBAI Sites & Layouts, ...) with Devanagari secondary lines; 080- STD codes -> 022-. Night _2 pairs: engine picks _2 randomly (variety, not time-of-day) and the hand-weathered repaints defeat pixel transfer, so _2 = clean copy of patched day art.
+- Pipeline: reference/osm/patch-pinned-art.mjs (sharp SVG text, Nirmala UI Devanagari verified), sheet-patched.mjs + shoot-one.cjs verification sheets in reference/osm/sheets/. index.json: kannada:"devanagari", patched:"mumbai-text", stale flag cleared on all 18. Remaining stale:"bangalore": 0.
+- Remaining 152 generic Kannada+Latin assets: content is generic (no Bangalore refs); Kannada script itself is plausible in Mumbai (large Kannadiga community) — left as-is pending user decision on a regeneration art pass.

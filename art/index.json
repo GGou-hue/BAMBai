@@ -442,8 +442,8 @@
    ],
    "c": "#6b8eaa",
    "e": "#537da0",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "BLR-BUS-01": {
    "url": "art/vehicles/BLR-BUS-01.webp",
@@ -1548,8 +1548,8 @@
    ],
    "c": "#aa9460",
    "e": "#ad9155",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "HRD-13": {
    "url": "art/hoardings/HRD-13.webp",
@@ -2846,8 +2846,8 @@
    ],
    "c": "#a08e42",
    "e": "#998e43",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-01_2": {
    "url": "art/shop-signs/SHOP-01_2.webp",
@@ -2865,8 +2865,8 @@
    ],
    "c": "#a18545",
    "e": "#9b8348",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-02": {
    "url": "art/shop-signs/SHOP-02.webp",
@@ -2883,8 +2883,8 @@
    ],
    "c": "#af5236",
    "e": "#a54a2a",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-02_2": {
    "url": "art/shop-signs/SHOP-02_2.webp",
@@ -2901,8 +2901,8 @@
    ],
    "c": "#ab5a40",
    "e": "#a2573a",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-03": {
    "url": "art/shop-signs/SHOP-03.webp",
@@ -3311,8 +3311,8 @@
    ],
    "c": "#b87a33",
    "e": "#b96c2b",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-15_2": {
    "url": "art/shop-signs/SHOP-15_2.webp",
@@ -3329,8 +3329,8 @@
    ],
    "c": "#b17b40",
    "e": "#ae713d",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-16": {
    "url": "art/shop-signs/SHOP-16.webp",
@@ -3347,8 +3347,8 @@
    ],
    "c": "#927636",
    "e": "#7e7731",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-16_2": {
    "url": "art/shop-signs/SHOP-16_2.webp",
@@ -3365,8 +3365,8 @@
    ],
    "c": "#98723f",
    "e": "#8d713e",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-17": {
    "url": "art/shop-signs/SHOP-17.webp",
@@ -3544,8 +3544,8 @@
    ],
    "c": "#b16940",
    "e": "#b77342",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-22_2": {
    "url": "art/shop-signs/SHOP-22_2.webp",
@@ -3561,8 +3561,8 @@
    ],
    "c": "#ac633f",
    "e": "#aa6a42",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-23": {
    "url": "art/shop-signs/SHOP-23.webp",
@@ -3739,8 +3739,8 @@
    ],
    "c": "#7f9069",
    "e": "#738a73",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-28_2": {
    "url": "art/shop-signs/SHOP-28_2.webp",
@@ -3757,8 +3757,8 @@
    ],
    "c": "#847d56",
    "e": "#7c755a",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-29": {
    "url": "art/shop-signs/SHOP-29.webp",
@@ -4008,8 +4008,8 @@
    ],
    "c": "#739679",
    "e": "#6e9279",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-36_2": {
    "url": "art/shop-signs/SHOP-36_2.webp",
@@ -4025,8 +4025,8 @@
    ],
    "c": "#74886b",
    "e": "#738368",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-37": {
    "url": "art/shop-signs/SHOP-37.webp",
@@ -4106,8 +4106,8 @@
    ],
    "c": "#9c8b4b",
    "e": "#8f8a4f",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-39_2": {
    "url": "art/shop-signs/SHOP-39_2.webp",
@@ -4123,8 +4123,8 @@
    ],
    "c": "#9d8149",
    "e": "#95804e",
-   "kannada": "yes",
-   "stale": "bangalore"
+   "kannada": "devanagari",
+   "patched": "mumbai-text"
   },
   "SHOP-40": {
    "url": "art/shop-signs/SHOP-40.webp",
