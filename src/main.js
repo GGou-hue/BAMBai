@@ -43,6 +43,7 @@ const bootCity = async () => {
   await preloadCityModels(r);
   progress(0.55, 'building BAMBai…');
   const city = await buildCity(r);
+  window.__city = city; // debug handle for the test harness
   progress(1, '');
   const fly = new FlyCamera(r.camera, params);
   let last = performance.now();
