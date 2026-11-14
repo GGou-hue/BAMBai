@@ -23,6 +23,13 @@ for (const p of chars.protagonists) {
   check(p.prologue?.id && p.prologue.openingVO?.hi && p.endingSting, `protagonist ${p.id} missing prologue/sting`);
   check(p.gameplay?.length >= 4, `protagonist ${p.id} gameplay list thin`);
   check(p.signatureDialogue?.length >= 2, `protagonist ${p.id} signature dialogue thin`);
+  check(p.model && p.spawnPlace, `protagonist ${p.id} missing model/spawnPlace (S2)`);
+  check(['arjun', 'nikhil', 'kavya', 'saree', 'mani', 'leela', 'shobha'].includes(p.model), `protagonist ${p.id} model ${p.model} not in cast.js`);
+}
+// spawnPlace must exist in the map dump
+const dump = JSON.parse(fs.readFileSync('reference/osm/mumbai/dump-mumbai.json', 'utf8'));
+for (const p of chars.protagonists) {
+  check(dump.places[p.spawnPlace], `protagonist ${p.id} spawnPlace ${p.spawnPlace} not in map dump`);
 }
 check(chapters.chapters.length === 20, `expected 20 chapters, got ${chapters.chapters.length}`);
 check(chapters.acts.length === 4 && chapters.acts.every((a) => a.chapters.length === 5), 'acts must each cover 5 chapters');
