@@ -153,7 +153,7 @@ const U = {
   deepaNivas: { lat: 18.93300, lon: 72.83360, road: `Maharshi Karve Road`, src: `Elphinstone College (approx)` },
   sparkwerk: { lat: 18.93450, lon: 72.83640, road: `P D Mello Road`, src: `Fort east campus (approx)` },
   vanijya: { lat: 18.94030, lon: 72.83510, road: `Mahapalika Marg`, src: `BMC HQ (approx)` },
-  tamraHouse: { lat: 18.93100, lon: 72.83830, road: `P D Mello Road`, src: `Fort east office (approx)` },
+  rakshasHouse: { lat: 18.93100, lon: 72.83830, road: `P D Mello Road`, src: `Fort east office (approx)` },
   santhe: { lat: 18.93920, lon: 72.83300, road: `Crawford Market Road`, src: `Crawford Market (approx)` },
   pustaka: { lat: 18.92600, lon: 72.83120, road: `Karmaveer Bhaurao Patil Road`, src: `Colaba brewhouse (approx)` },
   oho: { lat: 18.92440, lon: 72.82940, road: `2nd Marine Street`, src: `Colaba venue (approx)` },
@@ -321,7 +321,7 @@ const Z_ENTRIES = [
   [`deepaNivas`, `J(\`deepaNivas\`,U.deepaNivas,80,55)`],
   [`sparkwerk`, `J(\`sparkwerk\`,U.sparkwerk,50,30)`],
   [`vanijya`, `J(\`vanijya\`,U.vanijya,70,40)`],
-  [`tamraHouse`, `J(\`tamraHouse\`,U.tamraHouse,28,26)`],
+  [`rakshasHouse`, `J(\`rakshasHouse\`,U.rakshasHouse,28,26)`],
   [`santhe`, `J(\`santhe\`,U.santhe,80,50)`],
   [`moneyCentre`, `J(\`moneyCentre\`,U.moneyCentre,18,14)`],
   [`oho`, `J(\`oho\`,U.oho,20,16)`],
@@ -351,7 +351,7 @@ const VT_TXT = `vt={
   },foodStreet:Q(Z.foodStreet,\`Kolvada food street\`,0),busStop:ht(U.busStop,\`Bus stop, Rangmahal Road\`,1.6),mallBusStop:ht(U.mallBusStop,\`Bus stop, Junction Square\`,1.6),teaStall:ht(U.teaStall,\`Tea stall\`,1.4),babusBar:(()=>{
     let e=Z.babusBar,[t,n]=H(U.babusBar);
     return Q(e,\`Babu's Bar\`,+((t-e.x)*Math.cos(e.ry)-(n-e.z)*Math.sin(e.ry)).toFixed(1))
-  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),tamraHouse:Q(Z.tamraHouse,\`Tamra House\`),santhe:Q(Z.santhe,\`Mota Bazaar\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
+  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),rakshasHouse:Q(Z.rakshasHouse,\`Rakshas House\`),santhe:Q(Z.santhe,\`Mota Bazaar\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
 },yt=`;
 
 // ---- 5. splice ----
