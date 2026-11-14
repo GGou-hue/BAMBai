@@ -376,6 +376,9 @@ cut(`var ft=[{`, `];if(z){`, `var ft=[];\nif(z){`, `ft`);
 // 5f. moneyCentre side-fix block (Koramangala lat/lon hardcoded)
 cut(`{let e=Z.moneyCentre,[t,n]=H({lat:12.93445,lon:77.61232})`, `e.side=r*Math.cos(e.ry)-i*Math.sin(e.ry)>=0?1:-1}`,
   `{let e=Z.moneyCentre,[t,n]=H({lat:18.92970,lon:72.83330});let r=t-e.x,i=n-e.z;e.side=r*Math.cos(e.ry)-i*Math.sin(e.ry)>=0?1:-1}`, `moneyCentreFix`);
+// 5f2. the yt auto-stand block has a second hardcoded Koramangala coord pair
+while (out.includes('H({lat:12.93445,lon:77.61232})'))
+  out = out.replace('H({lat:12.93445,lon:77.61232})', 'H({lat:18.92970,lon:72.83330})');
 // 5g. market-roads block
 cut(`{let e=[[12.9212,77.6203]`, `e.market=!0,e.lanes=2)}var U={`, `{let e=[]}var U={`, `market`);
 // 5h. vt PLACES (comma-declared)
