@@ -184,3 +184,15 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
 3. Ot id/name still 'koramangala'. 13 BAD anchors to re-probe.
 4. Trees overlap roads near MD promenade.
 5. Then renames (fictional names), liveries (BEST red, kaali-peeli), MH plates, fares, festivals.
+
+## Progress log (session 3) — commit 63fac6a
+- Issue 2 (block coverage) SOLVED. Root causes were upstream of Ku: (a) q4 buildings fetch lost node
+  coordinates (out body + partial recursion) -> refetched with 'out geom' + relations; (b) 284 faces died
+  in post-inset sanitize (miter self-intersection) -> fallback ladder full/60%/35%/shrink; (c) face cap
+  60k->200k; (d) recursive gap-fill. Blocks 300->534, footprints 1413->3151. Fort now reads dense.
+- Issue 1 (sea) SOLVED: q5 extended-bbox coastline fetch; west arc from Malabar Hill N to Colaba tip,
+  closed with far-west corners; 107 pts simple, area 8.06M u2.
+- Issue 3 SOLVED: Ot id/name -> mumbai/South Mumbai; all 38 anchors OK (strict interior+0.6u snap);
+  trees >=14u from roads.
+- Shots: shots/mum-fort-top2.png (dense Fort), shots/mum-md-top6.png (MD curve + water, no floaters).
+- Polish note: 35%-inset fallback blocks may not rank sides (no roadside placement there); buildings still render.
