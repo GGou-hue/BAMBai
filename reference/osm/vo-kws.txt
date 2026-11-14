@@ -1,0 +1,18 @@
+arjun-busted-2.wav	0.93	System.Speech.Recognition.Choices
+cop-2-1.wav	0.87	System.Speech.Recognition.Choices
+cop-7-1.wav	0.94	System.Speech.Recognition.Choices
+delhi-2.wav	0.63	System.Speech.Recognition.Choices
+driver-2-1.wav	0.98	System.Speech.Recognition.Choices
+driver-2-1.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."
+driver-4-1.wav	0.69	System.Speech.Recognition.Choices
+driver-4-1.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."
+goon-2-1.wav	0.70	System.Speech.Recognition.Choices
+goon-2-1.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."
+radio-10-1.wav	0.66	System.Speech.Recognition.Choices
+rider-1-1.wav	0.78	System.Speech.Recognition.Choices
+rider-1-1.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."
+tanker-1-1.wav	0.67	System.Speech.Recognition.Choices
+vendor-12.wav	0.60	System.Speech.Recognition.Choices
+vendor-12.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."
+vendor-6.wav	0.84	System.Speech.Recognition.Choices
+vendor-6.wav	ERR	Exception calling "Recognize" with "0" argument(s): "No audio input is supplied to this recognizer. Use the method SetInputToDefaultAudioDevice if a microphone is connected to the system, otherwise use SetInputToWaveFile, SetInputToWaveStream or SetInputToAudioStream to perform speech recognition from pre-recorded audio."

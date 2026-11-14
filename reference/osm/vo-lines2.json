@@ -1,0 +1,27 @@
+[
+ {
+  "file": "delhi-1",
+  "text": "Brother, will you go to Powai? How much? Adjust a little, buddy!",
+  "rate": -1
+ },
+ {
+  "file": "fan-2",
+  "text": "Bambai! Bambai! Bambai!",
+  "rate": 2
+ },
+ {
+  "file": "fan-6",
+  "text": "Sixer! Sixer! Bambai!",
+  "rate": 2
+ },
+ {
+  "file": "rj-gully-weather-1",
+  "text": "Gully Indie weather watch! Monsoon arriving early this year. Carry the umbrella, expect waterlogged lanes by evening, and the sea breeze keeps it sticky. Stay dry out there, Bambai!",
+  "rate": 0
+ },
+ {
+  "file": "rj-hustle-north-1",
+  "text": "Hustle FM, the north update! New food hall opening near the highway, rents up another ten percent, and every third auto on the road is a delivery partner now. Grind on, Bambai!",
+  "rate": 0
+ }
+]

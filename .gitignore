@@ -6,3 +6,5 @@ vite-*.log
 q.txt
 south-mumbai*.json
 reference/osm/vo-backup/
+reference/osm/vo-tmp/
+reference/osm/vo-tmp-old/

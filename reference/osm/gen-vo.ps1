@@ -1,10 +1,11 @@
-// TTS-generate the 37 stale VO WAVs with Windows SAPI (System.Speech)
-// reads reference/osm/vo-lines.json; backs up originals to reference/osm/vo-backup/
+# TTS-generate stale VO WAVs with Windows SAPI (System.Speech)
+# usage: gen-vo.ps1 [-Lines vo-lines.json]
+param($Lines = 'vo-lines.json')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Speech
 
 $root = 'C:\Users\User4\Downloads\BAMBai'
-$lines = Get-Content "$root\reference\osm\vo-lines.json" -Raw | ConvertFrom-Json
+$lines = Get-Content "$root\reference\osm\$Lines" -Raw | ConvertFrom-Json
 $backup = "$root\reference\osm\vo-backup"
 if (-not (Test-Path $backup)) { New-Item -ItemType Directory -Path $backup | Out-Null }
 
@@ -24,4 +25,4 @@ foreach ($l in $lines) {
   $done++
 }
 $syn.Dispose()
-Write-Output "generated $done wavs"
+Write-Output "generated $done wavs from $Lines"

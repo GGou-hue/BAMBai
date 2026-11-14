@@ -239,3 +239,13 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   swept); a git-history text diff (d77cce2~1) proved only 3 chatter lines were ever swept
   and the rest already matched. Residual: ~60 clips unverifiable without listening
   (vendor, street-shout, pairs, fan, rj-gully/hustle/all-news, darshini, nimsha).
+- VO keyword-spot round 2 (SAPI SpeechRecognitionEngine, en-US): poor recall on Indian-accent
+  audio (only distinctive words like koramangala recognized; multi-word phrases mostly missed),
+  but surfaced 5 more plausible-stale clips: fan-2/fan-6 (chant syllable analysis: 13 peaks
+  ~= "Bengaluru"x3, not "Bambai"x3), delhi-1 ("whitefield" 0.98), rj-hustle-north-1
+  ("whitefield" 0.98), rj-gully-weather-1 ("lalbagh"+"kannada"). All 5 regenerated
+  (commit after 07ce6fb). False-positive pattern identified: grunts/generic shouts force-match
+  distinctive words (arjun-fall, near-6, goon-5, splashed-3, autohail-4, ident-gully-4 skipped).
+  Residual truly-unverifiable: vendor-1..13, street-shout-1..13, pairs-1..4a/b (likely Kannada
+  speech that en-US recognition cannot score), rj-all-news/ad-cricket/ad-rainbow/ad-xerox
+  (no hits, content unknown), darshini/nimsha (likely ambience babble).
