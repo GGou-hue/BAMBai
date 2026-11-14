@@ -98,10 +98,32 @@ const snapAnchor = a => {
       if (d < bd) { bd = d; best = [x, z]; bestPoly = poly; }
     }
   }
-  if (best && bd > 2) {
+  if (best && bd > 0.01) {
     let [x, z] = best;
-    if (bd > 0.5) {
-      // nudge 2.5u into the block along the inward normal of the nearest edge
+    // strict acceptance: strictly inside some block AND ≥ 0.6u from its edges
+    // (on-edge points flip between ray-casts after the lat/lon roundtrip)
+    const wellInside = (px, pz) => {
+      for (const poly of S23.blocks) {
+        let c = false;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+          const [xi, zi] = poly[i], [xj, zj] = poly[j];
+          if ((zi > pz) !== (zj > pz) && px < (xj - xi) * (pz - zi) / (zj - zi) + xi) c = !c;
+        }
+        if (!c) continue;
+        let dmin = 1e9;
+        for (let i = 0; i < poly.length; i++) {
+          const p = poly[i], q = poly[(i + 1) % poly.length];
+          const dx = q[0] - p[0], dz = q[1] - p[1], L2 = dx * dx + dz * dz || 1;
+          let t = ((px - p[0]) * dx + (pz - p[1]) * dz) / L2; t = Math.max(0, Math.min(1, t));
+          dmin = Math.min(dmin, Math.hypot(p[0] + dx * t - px, p[1] + dz * t - pz));
+        }
+        if (dmin >= 0.6) return true;
+      }
+      return false;
+    };
+    if (!wellInside(x, z)) {
+      // nudge into the block along the inward normal of the nearest edge;
+      // shrink the step until the point is actually inside (thin slivers!)
       const poly = bestPoly;
       // find that edge again and its inward normal
       let bi = -1, bj = -1, bdd = 1e9;
@@ -112,7 +134,34 @@ const snapAnchor = a => {
       const cx = poly.reduce((s, pp) => s + pp[0], 0) / poly.length, cz = poly.reduce((s, pp) => s + pp[1], 0) / poly.length;
       const mx = (p[0] + q[0]) / 2, mz = (p[1] + q[1]) / 2;
       if ((cx - mx) * nx + (cz - mz) * nz < 0) { nx = -nx; nz = -nz; }
-      x += nx * 2.5; z += nz * 2.5;
+      const inside = (px, pz) => { let c = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, zi] = poly[i], [xj, zj] = poly[j]; if ((zi > pz) !== (zj > pz) && px < (xj - xi) * (pz - zi) / (zj - zi) + xi) c = !c; } return c; };
+      for (const step of [2.5, 1.2, 0.6, 0.3, 0.15, 0.07]) {
+        if (wellInside(x + nx * step, z + nz * step)) { x += nx * step; z += nz * step; break; }
+      }
+      // still not well inside (thin slivers, boundary flukes): nearest
+      // guaranteed-interior point over ALL blocks
+      if (!wellInside(x, z)) {
+        let cand = null, cd = 1e9;
+        for (const poly2 of S23.blocks) {
+          const cands = [];
+          const cx2 = poly2.reduce((s, pp) => s + pp[0], 0) / poly2.length, cz2 = poly2.reduce((s, pp) => s + pp[1], 0) / poly2.length;
+          cands.push([cx2, cz2]);
+          poly2.forEach((p, i) => {
+            const q = poly2[(i + 1) % poly2.length];
+            const mx = (p[0] + q[0]) / 2, mz = (p[1] + q[1]) / 2;
+            const dx2 = q[0] - p[0], dz2 = q[1] - p[1], L3 = Math.hypot(dx2, dz2) || 1;
+            let nx2 = -dz2 / L3, nz2 = dx2 / L3;
+            if ((cx2 - mx) * nx2 + (cz2 - mz) * nz2 < 0) { nx2 = -nx2; nz2 = -nz2; }
+            cands.push([mx + nx2 * 1.2, mz + nz2 * 1.2], [mx + nx2 * 0.7, mz + nz2 * 0.7]);
+          });
+          for (const [px, pz] of cands) {
+            if (!wellInside(px, pz)) continue;
+            const d = Math.hypot(px - x0, pz - z0);
+            if (d < cd) { cd = d; cand = [px, pz]; }
+          }
+        }
+        if (cand) { [x, z] = cand; }
+      }
     }
     a.lat = +(LAT0 - z / (D_M * scale)).toFixed(6);
     a.lon = +(LON0 + x / (U_M * scale)).toFixed(6);
@@ -236,6 +285,10 @@ cut(`treeTruth:[[12.94463,77.60815,\`foot\`]`, `return{x:r,z:i,k:n}})`, `treeTru
 cut(`parkKit:{gazebos:[[12.93919,77.6198]`, `gyms:[[12.93848,77.61943]].map(([e,t])=>H({lat:e,lon:t}))}`, `parkKit:{gazebos:[],gyms:[]}`, `parkKit`);
 cut(`glassRuns:[{a:H({lat:12.9356,lon:77.6114})`, `hw:48}]`, `glassRuns:[]`, `glassRuns`);
 cut(`roofAds:[{a:H({lat:12.9396,lon:77.6244})`, `hw:40,bare:.3}]`, `roofAds:[]`, `roofAds`);
+// 5k. city id/name
+if (out.includes('id:`koramangala`,name:`Koramangala`'))
+  out = out.replace('id:`koramangala`,name:`Koramangala`', 'id:`mumbai`,name:`South Mumbai`');
+else console.log('note: Ot id/name literal not found (already renamed?)');
 // glass:wt.map(...) — wt is [] now; leave the .map (safe).
 // medians:Ct.map(...) — Ct is []; leave.
 

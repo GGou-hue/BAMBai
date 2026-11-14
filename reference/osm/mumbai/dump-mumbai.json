@@ -1,7 +1,7 @@
 {
- "id": "koramangala",
+ "id": "mumbai",
  "nodes": 3160,
- "edges": 3913,
+ "edges": 3866,
  "bounds": {
   "minX": -919.4,
   "maxX": 874.7,
@@ -10,62 +10,62 @@
  },
  "places": {
   "spawn": {
-   "x": 58.92,
-   "z": 201.51,
-   "ry": 2.698,
+   "x": 52.05,
+   "z": 131.49,
+   "ry": 1.706,
    "label": "Outside the Colaba PG"
   },
   "pg": {
-   "x": 61.63,
-   "z": 202.8,
-   "ry": 2.698,
+   "x": 52.46,
+   "z": 134.46,
+   "ry": 1.706,
    "label": "The Colaba PG"
   },
   "pgScooter": {
-   "x": 65.24,
-   "z": 205.73,
-   "ry": -2.014,
+   "x": 69.98,
+   "z": 139.8,
+   "ry": -0.364,
    "label": "PG scooter spot"
   },
   "darshini": {
-   "x": 134.67,
-   "z": 141.92,
-   "ry": -0.379,
+   "x": 150.27,
+   "z": 143.58,
+   "ry": 1.159,
    "label": "Merwani's Irani Darshini"
   },
   "canopyTowerC": {
-   "x": 66.47,
-   "z": 383.64,
-   "ry": 0.644,
+   "x": 80.04,
+   "z": 359.3,
+   "ry": 3.142,
    "label": "Canopy Heights, Tower C gate"
   },
   "lakeBund": {
-   "x": -271.94,
-   "z": -929.1,
-   "ry": -1.576,
+   "x": -1743.75,
+   "z": -2624.64,
+   "ry": -1.816,
    "label": "Backbay promenade path"
   },
   "sluiceGate": {
-   "x": -921.13,
-   "z": 805.93,
-   "ry": -2.4,
+   "x": -836.19,
+   "z": 985.9,
+   "ry": -2.72,
    "label": "Sewri sluice gate"
   },
   "surveyPegs": {
-   "x": -533.54,
-   "z": 410.87,
-   "ry": 1.213,
+   "x": -25.93,
+   "z": 440.42,
+   "ry": -2.021,
    "label": "Survey pegs on the mudflats"
   },
   "drainInlet": {
-   "x": -855.01,
-   "z": 769.23,
-   "ry": 2.984,
+   "x": -723.36,
+   "z": 923.74,
+   "ry": -2.151,
    "label": "Stormwater outfall inlet"
   },
   "autoStand": {
-   "x": 134.6,
-   "z": 153.47,
+   "x": 134.61,
+   "z": 153.46,
    "ry": -2.082,
    "label": "Auto stand"
   },
@@ -82,33 +82,33 @@
    "label": "BAMBAI Sites & Layouts (land broker)"
   },
   "tankerDepot": {
-   "x": 652.9,
-   "z": -917.95,
-   "ry": 1.352,
+   "x": 637.78,
+   "z": -949.62,
+   "ry": 2.982,
    "label": "Harbour tanker depot"
   },
   "pub": {
-   "x": 111.92,
-   "z": -458.46,
+   "x": 111.58,
+   "z": -459.44,
    "ry": 1.899,
    "label": "Twist Brewing Co."
   },
   "mall": {
-   "x": 108.26,
-   "z": -361.16,
-   "ry": -1.979,
+   "x": 124.12,
+   "z": -347.39,
+   "ry": -0.325,
    "label": "Junction Square mall"
   },
   "hospital": {
-   "x": 224.95,
-   "z": -1007.68,
-   "ry": -1.437,
+   "x": 235.15,
+   "z": -1009.58,
+   "ry": -1.465,
    "label": "Rain Tree Hospital"
   },
   "arogyaGate": {
-   "x": 217.19,
-   "z": -1065.15,
-   "ry": -1.437,
+   "x": 235.15,
+   "z": -1009.58,
+   "ry": -1.465,
    "label": "Arogya Nagar Medical College & Hospital"
   },
   "policeOutpost": {
@@ -118,15 +118,15 @@
    "label": "Police outpost"
   },
   "checkpoint": {
-   "x": 164.62,
-   "z": 49.39,
-   "ry": 0.668,
+   "x": 139.44,
+   "z": 8.64,
+   "ry": -2.289,
    "label": "Night checkpoint, Shahid Bhagat Singh Road"
   },
   "park": {
-   "x": -72.48112161884796,
-   "z": 210.730188325434,
-   "ry": 2.5043219937713888,
+   "x": -72.449109355407,
+   "z": 174.62938748435772,
+   "ry": 1.5964317353165742,
    "label": "Neighbourhood park"
   },
   "foodStreet": {
@@ -136,15 +136,15 @@
    "label": "Colaba food street"
   },
   "busStop": {
-   "x": 160.77,
-   "z": -513.28,
-   "ry": -1.713,
+   "x": 172.59,
+   "z": -512.43,
+   "ry": -0.942,
    "label": "Bus stop, Maharshi Karve Road"
   },
   "mallBusStop": {
-   "x": 127.92,
-   "z": -364.13,
-   "ry": 1.174,
+   "x": 127.63,
+   "z": -365.09,
+   "ry": 3.005,
    "label": "Bus stop, Junction Square"
   },
   "teaStall": {
@@ -154,9 +154,9 @@
    "label": "Tea stall"
   },
   "babusBar": {
-   "x": 156.74,
-   "z": 48.14,
-   "ry": -1.902,
+   "x": 127.48,
+   "z": 2.53,
+   "ry": -0.257,
    "label": "Babu's Bar"
   },
   "syrup": {
@@ -178,8 +178,8 @@
    "label": "Bijli World Signal"
   },
   "stadium": {
-   "x": 312.67,
-   "z": -713.8,
+   "x": 312.74,
+   "z": -713.01,
    "ry": 1.664,
    "label": "Aata Mantapa Indoor Stadium"
   },
@@ -190,15 +190,15 @@
    "label": "Deepa Nivas College"
   },
   "sparkwerk": {
-   "x": 342.69,
-   "z": -543.31,
-   "ry": 1.548,
+   "x": 340.36,
+   "z": -543.26,
+   "ry": 1.547,
    "label": "SparkWerk Campus"
   },
   "vanijya": {
-   "x": 231.14,
-   "z": -885.03,
-   "ry": -1.214,
+   "x": 251.97,
+   "z": -849.75,
+   "ry": -1.524,
    "label": "Bambai Vanijya Sankeerna"
   },
   "tamraHouse": {
@@ -208,21 +208,21 @@
    "label": "Tamra House"
   },
   "santhe": {
-   "x": 163.62,
-   "z": -776.84,
-   "ry": -2.525,
+   "x": 182.23,
+   "z": -800.62,
+   "ry": -1.079,
    "label": "Crawford Santhe"
   },
   "oho": {
-   "x": -41.34,
-   "z": 91.92,
-   "ry": -1.802,
+   "x": -49.1,
+   "z": 67.17,
+   "ry": -0.045,
    "label": ""
   },
   "karadi": {
-   "x": 101.21,
-   "z": 99.33,
-   "ry": 1.245,
+   "x": 50.43,
+   "z": 83.45,
+   "ry": -0.876,
    "label": ""
   },
   "samaja": {
@@ -233,7 +233,7 @@
   },
   "covalent": {
    "x": 488.3,
-   "z": -524.73,
+   "z": -524.7,
    "ry": 1.607,
    "label": ""
   }

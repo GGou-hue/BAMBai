@@ -22,8 +22,10 @@ for (const el of hw.elements) if (el.type === 'node') nodesById.set(el.id, [el.l
 const HW_CLASS = {
   motorway: 0, motorway_link: 0, trunk: 0, trunk_link: 0, primary: 0, primary_link: 0,
   secondary: 1, secondary_link: 1, tertiary: 1, tertiary_link: 1,
-  residential: 2, unclassified: 2, living_street: 2, pedestrian: 3,
-  service: 3, track: -1, footway: -1, path: -1, steps: -1, cycleway: -1,
+  residential: 2, unclassified: 2, living_street: 2,
+  // pedestrian ways are NOT roads here: they slice superblock faces into slivers
+  // (Koramangala keeps footpaths in WALKS, not ROADS) — exclude.
+  pedestrian: -1, service: 3, track: -1, footway: -1, path: -1, steps: -1, cycleway: -1,
 };
 const SPEC = [
   { width: 17, lanes: 4, median: 1 },   // rank 0
@@ -147,7 +149,171 @@ for (const w of ways) {
   const before = { n: nodes.length, e: edges.length };
   nodes.length = 0; nodes.push(...nodes2);
   edges.length = 0; edges.push(...edges2);
+  // nodeKey must be rebuilt: it still maps to pre-compaction indices
+  nodeKey.clear();
+  nodes.forEach((p, i) => nodeKey.set(p[0] + ',' + p[1], i));
   console.log(`node merge: ${before.n}->${nodes.length} nodes, ${before.e}->${edges.length} edges`);
+}
+
+{
+  const CELL3 = 32;
+  const grid3 = new Map();
+  const ekey3 = (x, z) => Math.floor(x / CELL3) + ',' + Math.floor(z / CELL3);
+  edges.forEach(e => {
+    const [x1, z1] = nodes[e[0]], [x2, z2] = nodes[e[1]];
+    const n = Math.max(1, Math.ceil(Math.max(Math.abs(x2 - x1), Math.abs(z2 - z1)) / CELL3));
+    for (let i = 0; i <= n; i++) {
+      const k = ekey3(x1 + (x2 - x1) * i / n, z1 + (z2 - z1) * i / n);
+      if (!grid3.has(k)) grid3.set(k, []);
+      if (!grid3.get(k).includes(e)) grid3.get(k).push(e);
+    }
+  });
+  const cuts3 = new Map();   // edge -> [{t, pt}]
+  const epSnap = new Map();  // endpoint node idx -> pt (merge endpoint into split node)
+  let snapped3 = 0;
+  for (const [ni, npos] of nodes.entries()) {
+    const cx = Math.floor(npos[0] / CELL3), cz = Math.floor(npos[1] / CELL3);
+    const seen = new Set();
+    for (let dx = -1; dx <= 1; dx++) for (let dz = -1; dz <= 1; dz++) {
+      const list = grid3.get((cx + dx) + ',' + (cz + dz)); if (!list) continue;
+      for (const e of list) {
+        if (e[0] === ni || e[1] === ni) continue;
+        const ek = e[0] + '_' + e[1];
+        if (seen.has(ek)) continue; seen.add(ek);
+        const [x1, z1] = nodes[e[0]], [x2, z2] = nodes[e[1]];
+        const dx2 = x2 - x1, dz2 = z2 - z1, L22 = dx2 * dx2 + dz2 * dz2 || 1;
+        let t = ((npos[0] - x1) * dx2 + (npos[1] - z1) * dz2) / L22;
+        if (t < 0.03 || t > 0.97) continue;
+        const px = x1 + dx2 * t, pz = z1 + dz2 * t;
+        if (Math.hypot(px - npos[0], pz - npos[1]) > 2.2) continue;
+        if (!cuts3.has(ek)) cuts3.set(ek, []);
+        cuts3.get(ek).push({ t, pt: [px, pz] });
+        if (!epSnap.has(ni)) epSnap.set(ni, [px, pz]);
+        snapped3++;
+      }
+    }
+  }
+  if (cuts3.size) {
+    const edges3 = [];
+    const nodeFor = p => {
+      const kk = p[0].toFixed(1) + ',' + p[1].toFixed(1);
+      if (nodeKey.has(kk)) return nodeKey.get(kk);
+      const idx = nodes.length; nodes.push([+p[0].toFixed(1), +p[1].toFixed(1)]); nodeKey.set(kk, idx);
+      return idx;
+    };
+    for (const e of edges) {
+      const cs = cuts3.get(e[0] + '_' + e[1]);
+      if (!cs) { edges3.push(e); continue; }
+      cs.sort((p, q) => p.t - q.t);
+      const pts = [];
+      for (const c of cs) {
+        const prev = pts[pts.length - 1];
+        if (prev && Math.hypot(prev[0] - c.pt[0], prev[1] - c.pt[1]) < 3) continue;
+        pts.push(c.pt);
+      }
+      let fromIdx = e[0];
+      for (const p of [...pts, [nodes[e[1]][0], nodes[e[1]][1]]]) {
+        const idx = nodeFor(p);
+        if (idx !== fromIdx && Math.hypot(nodes[idx][0] - nodes[fromIdx][0], nodes[idx][1] - nodes[fromIdx][1]) >= 4)
+          edges3.push([fromIdx, idx, e[2], e[3], e[4], e[5], e[6]]);
+        fromIdx = idx;
+      }
+    }
+    // merge snapped endpoint nodes into their split nodes
+    if (epSnap.size) {
+      const remap = new Map();
+      for (const [ni, pt] of epSnap) remap.set(ni, nodeFor(pt));
+      for (const e of edges3) { if (remap.has(e[0])) e[0] = remap.get(e[0]); if (remap.has(e[1])) e[1] = remap.get(e[1]); }
+    }
+    // drop collapsed/duplicate edges
+    const seenE = new Set(); const edges4 = [];
+    for (const e of edges3) {
+      if (e[0] === e[1]) continue;
+      const k = e[0] < e[1] ? e[0] + '_' + e[1] : e[1] + '_' + e[0];
+      if (seenE.has(k)) continue; seenE.add(k);
+      edges4.push(e);
+    }
+    edges.length = 0; edges.push(...edges4);
+    console.log(`T-junction snap: ${snapped3} endpoints snapped, ${cuts3.size} edges split`);
+  }
+}
+
+// --- planarize step 2: split edges at proper crossings ---
+{
+  const CELL2 = 48;
+  const egrid = new Map();
+  const segCellSets = edges.map((e, ei) => {
+    const [x1, z1] = nodes[e[0]], [x2, z2] = nodes[e[1]];
+    const n = Math.max(1, Math.ceil(Math.max(Math.abs(x2 - x1), Math.abs(z2 - z1)) / CELL2));
+    const cells = [];
+    for (let i = 0; i <= n; i++) {
+      const k = Math.floor((x1 + (x2 - x1) * i / n) / CELL2) + ',' + Math.floor((z1 + (z2 - z1) * i / n) / CELL2);
+      if (!cells.includes(k)) cells.push(k);
+    }
+    for (const k of cells) { if (!egrid.has(k)) egrid.set(k, []); egrid.get(k).push(ei); }
+    return cells;
+  });
+  const segInt = (p1, p2, p3, p4) => {
+    const d1x = p2[0] - p1[0], d1z = p2[1] - p1[1], d2x = p4[0] - p3[0], d2z = p4[1] - p3[1];
+    const den = d1x * d2z - d1z * d2x;
+    if (Math.abs(den) < 1e-9) return null;
+    const t = ((p3[0] - p1[0]) * d2z - (p3[1] - p1[1]) * d2x) / den;
+    const u = ((p3[0] - p1[0]) * d1z - (p3[1] - p1[1]) * d1x) / den;
+    if (t < 0.02 || t > 0.98 || u < 0.02 || u > 0.98) return null; // endpoints handled by merge
+    return [p1[0] + t * d1x, p1[1] + t * d1z];
+  };
+  const cuts = edges.map(() => []); // per-edge list of {t, pt}
+  const tested = new Set();
+  for (const [k, list] of egrid) {
+    for (let ii = 0; ii < list.length; ii++) for (let jj = ii + 1; jj < list.length; jj++) {
+      const i = list[ii], j = list[jj];
+      if (i === j) continue;
+      const pk = i < j ? i + '_' + j : j + '_' + i;
+      if (tested.has(pk)) continue; tested.add(pk);
+      const ei = edges[i], ej = edges[j];
+      if (ei[0] === ej[0] || ei[0] === ej[1] || ei[1] === ej[0] || ei[1] === ej[1]) continue; // share a node
+      const p = segInt(nodes[ei[0]], nodes[ei[1]], nodes[ej[0]], nodes[ej[1]]);
+      if (!p) continue;
+      const L1 = Math.hypot(nodes[ei[1]][0] - nodes[ei[0]][0], nodes[ei[1]][1] - nodes[ei[0]][1]) || 1;
+      const L2 = Math.hypot(nodes[ej[1]][0] - nodes[ej[0]][0], nodes[ej[1]][1] - nodes[ej[0]][1]) || 1;
+      const t1 = ((p[0] - nodes[ei[0]][0]) * (nodes[ei[1]][0] - nodes[ei[0]][0]) + (p[1] - nodes[ei[0]][1]) * (nodes[ei[1]][1] - nodes[ei[0]][1])) / (L1 * L1);
+      const t2 = ((p[0] - nodes[ej[0]][0]) * (nodes[ej[1]][0] - nodes[ej[0]][0]) + (p[1] - nodes[ej[0]][1]) * (nodes[ej[1]][1] - nodes[ej[0]][1])) / (L2 * L2);
+      cuts[i].push({ t: t1, pt: p }); cuts[j].push({ t: t2, pt: p });
+    }
+  }
+  let splits = 0;
+  const edges3 = [];
+  for (let ei = 0; ei < edges.length; ei++) {
+    const e = edges[ei];
+    if (!cuts[ei].length) { edges3.push(e); continue; }
+    const [a, b] = e;
+    const A = nodes[a], B = nodes[b];
+    cuts[ei].sort((p, q) => p.t - q.t);
+    // dedupe cuts closer than 3 u along the edge
+    const pts = [];
+    for (const c of cuts[ei]) {
+      const prev = pts[pts.length - 1];
+      if (prev && Math.hypot(prev[0] - c.pt[0], prev[1] - c.pt[1]) < 3) continue;
+      pts.push(c.pt);
+    }
+    let from = A;
+    for (const p of [...pts, B]) {
+      if (Math.hypot(p[0] - from[0], p[1] - from[1]) < 4) { continue; }
+      let idx;
+      if (p === B || (p[0] === B[0] && p[1] === B[1])) idx = b;
+      else {
+        const k = p[0].toFixed(1) + ',' + p[1].toFixed(1);
+        if (nodeKey.has(k)) idx = nodeKey.get(k);
+        else { idx = nodes.length; nodes.push([+p[0].toFixed(1), +p[1].toFixed(1)]); nodeKey.set(k, idx); }
+      }
+      edges3.push([from === A ? a : idxOf(from), idx, e[2], e[3], e[4], e[5], e[6]]);
+      from = p; splits++;
+    }
+  }
+  // helper to map an already-pushed point back to its node idx
+  function idxOf(p) { const k = p[0].toFixed(1) + ',' + p[1].toFixed(1); return nodeKey.get(k); }
+  edges.length = 0; edges.push(...edges3);
+  console.log(`planarize: ${splits} edge splits at crossings`);
 }
 
 // --- bounds: from actual node extent (Overpass ways may poke outside the query bbox) ---

@@ -170,3 +170,17 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
 3. Splice or shim: keep all map.js code, replace only data literals →
    `vendor/map.js` Mumbai build; mirror to `_source/`.
 4. Boot check (`node shot.cjs` sweep) before any label/livery work.
+
+## Progress log (session 2)
+- DONE: full OSM->map.js pipeline (stage1/23/4) committed as 22e436d. Game boots (menu + fly cam).
+- Marine Drive proof shots: shots/mum-md-top3.png (aerial, shore curve + deco row), shots/mum-boot-md.png.
+- Sea polygon now built from real OSM coastline ways (west shore chain, thinned to 46 pts, simple).
+- Node-merge tolerance raised 2.5 -> 4 u: blocks 188 -> 303.
+- MD fact: OSM 'Marine Drive' way is only the Chowpatty stub; the bay curve is 'Netaji Subhash Chandra Bose Rd' (overhangs bbox north to lat ~18.964).
+
+## Known issues / next
+1. Sea north bridge at z=-1400: MD north of Chowpatty has no water beside it (coastline data clipped by bbox). Fix: extend bbox query north or accept.
+2. Gray empty ground in Fort/CSMT aerials: block coverage still thin vs Koramangala (303 blocks / 1556 footprints). Investigate Ku lot generation + raise footprint density.
+3. Ot id/name still 'koramangala'. 13 BAD anchors to re-probe.
+4. Trees overlap roads near MD promenade.
+5. Then renames (fictional names), liveries (BEST red, kaali-peeli), MH plates, fares, festivals.
