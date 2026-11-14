@@ -196,3 +196,18 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   trees >=14u from roads.
 - Shots: shots/mum-fort-top2.png (dense Fort), shots/mum-md-top6.png (MD curve + water, no floaters).
 - Polish note: 35%-inset fallback blocks may not rank sides (no roadside placement there); buildings still render.
+
+## Progress log (session 4) — commit d77cce2: rename phase
+- All 234 real OSM road names -> fictional Bambai names in stage4 (majors hand-picked:
+  Marine Drive -> Moti Haar Marg, Shahid Bhagat Singh Rd -> Kolvada Main Rd, P D'Mello ->
+  Bandar Rd, Dadabhai Naoroji -> Ghadi Ghar Rd...; rest = invented pool word + original
+  suffix; generic colonial names kept). 226 unique names, all zone-referenced roads verified.
+- PLACES: Colaba -> Kolvada, Crawford Santhe -> Mota Bazaar, Backbay -> Moti Haar promenade,
+  Sewri -> Retibandar. City name -> Bambai. Anchors OK, dump OK, boot OK.
+- Liveries verified already-Mumbai (auto black+yellow, bus red, taxi kaali-peeli, MH plates,
+  LED 401 Bandra/Dadar, MUMBAI POLICE). Fare base 30 -> 27 (MMR minimum).
+- Festivals -> Maharashtra set; radio renamed; HUD localities -> 12 South Mumbai wards;
+  jam/flood zones -> Mumbai roads+coords; Kannada fonts -> Devanagari; flavor dialogue ->
+  Mumbai equivalents; rival -> PUNERI MASALA.
+- Known risk: street-VO audio may still say Kannada/Bangalore words (249 WAVs, standing open
+  decision). darshini engine kind name kept (label already says Irani Darshini).
