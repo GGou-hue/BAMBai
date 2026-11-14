@@ -15,7 +15,7 @@ const { chromium } = require('playwright-core');
     const q = kv.map((s) => s.replace(/^/, '')).join('&');
     const url = `http://localhost:5173/?${q}`;
     await page.goto(url, { waitUntil: 'load' });
-    try { await page.waitForSelector('#boot.done', { timeout: 60000 }); }
+    try { await page.waitForSelector('#boot.done', { timeout: 300000 }); }
     catch { console.log('[warn] boot did not finish for', url); }
     await page.waitForTimeout(2500);
     await page.screenshot({ path: out });

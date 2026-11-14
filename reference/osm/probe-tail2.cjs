@@ -1,0 +1,12 @@
+const fs = require('fs');
+const s = fs.readFileSync('vendor/map.js', 'utf8');
+const i = s.indexOf('parkKit');
+console.log('parkKit ctx:', JSON.stringify(s.slice(i, i + 600)));
+const j = s.indexOf('glassRuns');
+console.log('glassRuns ctx:', JSON.stringify(s.slice(j - 30, j + 300)));
+const k = s.indexOf('roofAds');
+console.log('roofAds ctx:', JSON.stringify(s.slice(k - 30, k + 300)));
+const m = s.indexOf('bareStreets');
+console.log('bareStreets ctx:', JSON.stringify(s.slice(m - 20, m + 200)));
+const n = s.indexOf('treeTruth');
+console.log('treeTruth ctx:', JSON.stringify(s.slice(n - 20, n + 260)));

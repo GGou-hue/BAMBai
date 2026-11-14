@@ -54,7 +54,7 @@ Everything runs in one browser tab. No account, no install. Progress in `localSt
   Twist Brewing Co., Junction Square mall, Rain Tree Hospital, Arogya Nagar Medical College,
   police outpost, night checkpoint, neighbourhood park, 5th Block food street, bus stops,
   tea stall, Thaatha Kamba, Babu's Bar, Syrup, Bijli World Signal, Aata Mantapa Indoor Stadium,
-  Deepa Nivas College, SparkWerk Campus, Koramangala Vanijya Sankeerna, Tamra House,
+  Deepa Nivas College, SparkWerk Campus, Koramangala Vanijya Sankeerna, Rakshas House,
   Madivala Santhe, money centre, and more.
 
 ---

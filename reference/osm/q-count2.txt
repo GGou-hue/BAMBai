@@ -1,0 +1,1 @@
+[out:json][timeout:60];(way(18.905,72.815,18.945,72.845)["leisure"];way(18.905,72.815,18.945,72.845)["landuse"~"park|grass|recreation_ground"];way(18.905,72.815,18.945,72.845)["natural"~"water|coastline|beach"];way(18.905,72.815,18.945,72.845)["waterway"];);out count;

@@ -1,0 +1,241 @@
+{
+ "id": "koramangala",
+ "nodes": 3160,
+ "edges": 3913,
+ "bounds": {
+  "minX": -919.4,
+  "maxX": 874.7,
+  "minZ": -2135.8,
+  "maxZ": 1398.4
+ },
+ "places": {
+  "spawn": {
+   "x": 58.92,
+   "z": 201.51,
+   "ry": 2.698,
+   "label": "Outside the Colaba PG"
+  },
+  "pg": {
+   "x": 61.63,
+   "z": 202.8,
+   "ry": 2.698,
+   "label": "The Colaba PG"
+  },
+  "pgScooter": {
+   "x": 65.24,
+   "z": 205.73,
+   "ry": -2.014,
+   "label": "PG scooter spot"
+  },
+  "darshini": {
+   "x": 134.67,
+   "z": 141.92,
+   "ry": -0.379,
+   "label": "Merwani's Irani Darshini"
+  },
+  "canopyTowerC": {
+   "x": 66.47,
+   "z": 383.64,
+   "ry": 0.644,
+   "label": "Canopy Heights, Tower C gate"
+  },
+  "lakeBund": {
+   "x": -271.94,
+   "z": -929.1,
+   "ry": -1.576,
+   "label": "Backbay promenade path"
+  },
+  "sluiceGate": {
+   "x": -921.13,
+   "z": 805.93,
+   "ry": -2.4,
+   "label": "Sewri sluice gate"
+  },
+  "surveyPegs": {
+   "x": -533.54,
+   "z": 410.87,
+   "ry": 1.213,
+   "label": "Survey pegs on the mudflats"
+  },
+  "drainInlet": {
+   "x": -855.01,
+   "z": 769.23,
+   "ry": 2.984,
+   "label": "Stormwater outfall inlet"
+  },
+  "autoStand": {
+   "x": 134.6,
+   "z": 153.47,
+   "ry": -2.082,
+   "label": "Auto stand"
+  },
+  "xeroxShop": {
+   "x": 14.3,
+   "z": 247.32,
+   "ry": 1.041,
+   "label": "Sai Xerox & Notary"
+  },
+  "brokerOffice": {
+   "x": 137.52,
+   "z": -281.74,
+   "ry": 0.109,
+   "label": "BAMBAI Sites & Layouts (land broker)"
+  },
+  "tankerDepot": {
+   "x": 652.9,
+   "z": -917.95,
+   "ry": 1.352,
+   "label": "Harbour tanker depot"
+  },
+  "pub": {
+   "x": 111.92,
+   "z": -458.46,
+   "ry": 1.899,
+   "label": "Twist Brewing Co."
+  },
+  "mall": {
+   "x": 108.26,
+   "z": -361.16,
+   "ry": -1.979,
+   "label": "Junction Square mall"
+  },
+  "hospital": {
+   "x": 224.95,
+   "z": -1007.68,
+   "ry": -1.437,
+   "label": "Rain Tree Hospital"
+  },
+  "arogyaGate": {
+   "x": 217.19,
+   "z": -1065.15,
+   "ry": -1.437,
+   "label": "Arogya Nagar Medical College & Hospital"
+  },
+  "policeOutpost": {
+   "x": 232.82,
+   "z": -442.86,
+   "ry": -1.646,
+   "label": "Police outpost"
+  },
+  "checkpoint": {
+   "x": 164.62,
+   "z": 49.39,
+   "ry": 0.668,
+   "label": "Night checkpoint, Shahid Bhagat Singh Road"
+  },
+  "park": {
+   "x": -72.48112161884796,
+   "z": 210.730188325434,
+   "ry": 2.5043219937713888,
+   "label": "Neighbourhood park"
+  },
+  "foodStreet": {
+   "x": -64.59,
+   "z": 132.55,
+   "ry": -2.507,
+   "label": "Colaba food street"
+  },
+  "busStop": {
+   "x": 160.77,
+   "z": -513.28,
+   "ry": -1.713,
+   "label": "Bus stop, Maharshi Karve Road"
+  },
+  "mallBusStop": {
+   "x": 127.92,
+   "z": -364.13,
+   "ry": 1.174,
+   "label": "Bus stop, Junction Square"
+  },
+  "teaStall": {
+   "x": 82.27,
+   "z": 173.1,
+   "ry": 2.878,
+   "label": "Tea stall"
+  },
+  "babusBar": {
+   "x": 156.74,
+   "z": 48.14,
+   "ry": -1.902,
+   "label": "Babu's Bar"
+  },
+  "syrup": {
+   "x": 172.87,
+   "z": -257.04,
+   "ry": -2.763,
+   "label": "Syrup"
+  },
+  "bijliSignal": {
+   "x": 258.6,
+   "z": -807.7,
+   "ry": -3.037,
+   "label": ""
+  },
+  "bijliWorld": {
+   "x": 259.45,
+   "z": -803.01,
+   "ry": -1.422,
+   "label": "Bijli World Signal"
+  },
+  "stadium": {
+   "x": 312.67,
+   "z": -713.8,
+   "ry": 1.664,
+   "label": "Aata Mantapa Indoor Stadium"
+  },
+  "deepaNivas": {
+   "x": 197.37,
+   "z": -462.89,
+   "ry": 1.331,
+   "label": "Deepa Nivas College"
+  },
+  "sparkwerk": {
+   "x": 342.69,
+   "z": -543.31,
+   "ry": 1.548,
+   "label": "SparkWerk Campus"
+  },
+  "vanijya": {
+   "x": 231.14,
+   "z": -885.03,
+   "ry": -1.214,
+   "label": "Bambai Vanijya Sankeerna"
+  },
+  "tamraHouse": {
+   "x": 458.26,
+   "z": -323.87,
+   "ry": 0.663,
+   "label": "Tamra House"
+  },
+  "santhe": {
+   "x": 163.62,
+   "z": -776.84,
+   "ry": -2.525,
+   "label": "Crawford Santhe"
+  },
+  "oho": {
+   "x": -41.34,
+   "z": 91.92,
+   "ry": -1.802,
+   "label": ""
+  },
+  "karadi": {
+   "x": 101.21,
+   "z": 99.33,
+   "ry": 1.245,
+   "label": ""
+  },
+  "samaja": {
+   "x": 50.17,
+   "z": -150.21,
+   "ry": 3.115,
+   "label": ""
+  },
+  "covalent": {
+   "x": 488.3,
+   "z": -524.73,
+   "ry": 1.607,
+   "label": ""
+  }
+ }
+}

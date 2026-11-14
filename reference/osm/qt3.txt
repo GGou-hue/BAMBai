@@ -1,0 +1,1 @@
+[out:json][timeout:60];way(18.905,72.815,18.945,72.845)["leisure"];out body;
