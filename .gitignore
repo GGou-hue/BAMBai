@@ -1,0 +1,7 @@
+node_modules/
+.pnpm-store/
+shots/
+*.log
+vite-*.log
+q.txt
+south-mumbai*.json

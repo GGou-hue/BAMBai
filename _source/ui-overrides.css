@@ -1,0 +1,413 @@
+/* BAMBai key art + UI overrides (Phase 7).
+   Art is cover-fit and TOP-ANCHORED: it fills the screen edge to edge and is
+   pinned to the top edge, so the top of the image (logos, skyline, faces) is
+   always visible and only the bottom may spill off on short screens. */
+
+/* --- engine loading screen (art layers are injected by src/branding.js,
+       because the engine paints its own background inline) --- */
+.nu-load-bg { display: none !important; }   /* engine's gradient backdrop */
+.nu-load-brand { display: none !important; } /* art carries its own title */
+.nu-loadart {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.nu-artlayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+.nu-artlayer.on { opacity: 1; }
+.nu-artlayer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.nu-artlayer img.s {  /* the art itself, filling the screen edge to edge */
+  object-fit: cover;
+  object-position: 50% 0;  /* keep the top; crop the bottom if needed */
+}
+.nu-loadmark {
+  position: absolute;
+  top: calc(var(--edge, 2em) * .9);
+  left: calc(var(--edge, 2em) * .9);
+  width: 3.2em;
+  height: 3.2em;
+  border-radius: .7em;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- title / menu screen --- */
+.nu-title {
+  isolation: isolate !important;
+  background: linear-gradient(rgba(11, 7, 20, .05), rgba(11, 7, 20, .35)),
+    url('/brand/title-collage.jpg') center top / cover no-repeat, #0b0714 !important;
+}
+.nu-title .nu-logo { display: none !important; }   /* baked into the art */
+.nu-title .nu-chatcard { display: none !important; } /* would clash with the art's own menu */
+.nu-title .nu-title-ch,
+.nu-title .nu-navline,
+.nu-title footer,
+.nu-title .nu-ver { display: none !important; }
+
+/* the interactive menu: a roomy bottom-docked glass bar (never covers the
+   art's logo, which sits in the upper half) */
+.nu-menu-panel {
+  position: absolute;
+  z-index: 2;
+  font-size: 1.22em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .62em;
+  padding: .9em 1.3em;
+  border-radius: 1.15em;
+  background: linear-gradient(165deg, rgba(22, 13, 33, .93), rgba(10, 6, 18, .96));
+  border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .07);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+.nu-menu-panel .nu-menu-brand {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  font: 800 .82em/1 var(--f-ui, sans-serif);
+  letter-spacing: .12em;
+  color: var(--marigold, #ffb22e);
+  padding-inline: .45em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
+}
+.nu-menu-panel .nu-menu-brand img { width: 1.9em; height: 1.9em; border-radius: .4em; }
+.nu-menu-panel .nu-play {
+  justify-content: center;
+  font-size: calc(1.24em * var(--dk, 1) + .1em);
+  margin: 0;
+  padding: .6em 1.35em;
+}
+.nu-menu-panel .nu-link {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  justify-content: center;
+  color: var(--ink, #fff);
+  background: linear-gradient(160deg, rgba(36, 25, 52, .92), rgba(17, 11, 27, .94));
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: .65em;
+  padding: .6em 1.1em;
+  font-size: 1.02em;
+  text-shadow: none;
+  clip-path: polygon(.55em 0, 100% 0, calc(100% - .55em) 100%, 0 100%);
+}
+.nu-menu-panel .nu-link:after { display: none; }
+.nu-menu-panel .nu-link:hover,
+.nu-menu-panel .nu-link:focus-visible {
+  color: var(--night, #1a0f26);
+  background: var(--marigold, #ffb22e);
+  outline: none;
+}
+/* Exit gets a deliberate dark-red row so it reads as "leave" and stays legible */
+.nu-menu-panel .nu-exit {
+  background: linear-gradient(160deg, rgba(88, 22, 30, .92), rgba(46, 12, 18, .94)) !important;
+  color: #ffd9d9 !important;
+  border-color: rgba(255, 140, 140, .25) !important;
+}
+.nu-menu-panel .nu-exit:hover,
+.nu-menu-panel .nu-exit:focus-visible {
+  background: var(--red, #ff4b55);
+  color: #fff;
+}
+
+/* --- Phase 7 UI polish -----------------------------------------------------*/
+
+/* title menu: entrance, hierarchy, hints */
+.nu-menu-panel {
+  animation: nu-panel-in .55s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes nu-panel-in {
+  from { opacity: 0; translate: -50% 1.4em; filter: blur(6px); }
+}
+.nu-menu-panel .nu-play {
+  letter-spacing: .04em;
+  box-shadow: 0 6px 24px rgba(255, 178, 46, .35);
+}
+.nu-menu-panel .nu-play:hover {
+  translate: .15em 0;
+}
+.nu-menu-panel .nu-link {
+  font-weight: 650;
+  letter-spacing: .02em;
+  transition: translate .25s var(--ease, ease-out), background .2s, color .2s;
+}
+.nu-menu-panel .nu-link:hover { translate: .2em 0; }
+.nu-menu-brand {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  margin: 0 .35em 0 0;
+  font: 800 .82em/1 var(--f-ui, sans-serif);
+  letter-spacing: .12em;
+  color: var(--marigold, #ffb22e);
+}
+.nu-menu-brand img { width: 1.9em; height: 1.9em; border-radius: .4em; }
+.nu-menu-keys {
+  flex-basis: 100%;
+  margin-top: .45em;
+  display: flex;
+  justify-content: center;
+  gap: 1.6em;
+  font: 600 .84em/1 var(--f-ui, sans-serif);
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .8);
+}
+.nu-menu-keys kbd { font-size: 1em; min-width: 1.5em; height: 1.5em; }
+
+/* small corner credit line on the title screen */
+.nu-title-credit {
+  position: absolute;
+  left: 1.4em;
+  bottom: 1.1em;
+  z-index: 2;
+  font: 500 .8em/1.4 var(--f-ui, sans-serif);
+  letter-spacing: .04em;
+  color: rgba(255, 255, 255, .78);
+  background: rgba(10, 6, 18, .55);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: .6em;
+  padding: .45em .8em;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+/* Exit keeps full contrast like the other rows */
+.nu-menu-panel .nu-exit { color: var(--ink, #fff) !important; opacity: 1 !important; }
+
+/* loading screen: bottom scrim so the UI text always reads, glassy
+   progress pill, brighter tip panel */
+.nu-loading::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  background: linear-gradient(rgba(7, 4, 11, 0), rgba(7, 4, 11, .38) 45%, rgba(7, 4, 11, .82));
+  z-index: 1;
+  pointer-events: none;
+}
+.nu-load-foot {
+  padding-bottom: calc(var(--edge, 2em) * 1.2) !important;
+  z-index: 2;
+}
+.nu-road {
+  height: 5px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+.nu-lnote {
+  max-width: 26em !important; /* keep the art's logo clear */
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  background: rgba(9, 5, 15, .8) !important;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: .8em;
+  padding: .7em .95em !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .45);
+}
+.nu-lnote small { color: #fffc !important; font-weight: 600; }
+.nu-tip {
+  color: #fff !important;
+  font-weight: 650 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .9), 0 0 14px rgba(0, 0, 0, .6);
+}
+/* toasts: wrap instead of one screen-wide line, and sit below the top HUD
+   row so they never cover the objective banner or the wallet */
+.nu-toast {
+  white-space: normal !important;
+  max-width: min(34em, 58vw) !important;
+  text-align: center;
+  line-height: 1.35;
+  border-radius: .9em !important;
+}
+.nu-tc { top: 4.6em !important; }
+/* short viewports: shrink the pause list so it fits fully on screen */
+@media (max-height: 760px) {
+  .nu-screen.nu-pause .nu-menu button {
+    font-size: min(calc(1.9em * var(--dk, 1) + .3em), 3.4vh) !important;
+    padding: .12em .6em .12em .2em !important;
+  }
+}
+.nu-load-row {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .95), 0 0 16px rgba(0, 0, 0, .55);
+  font-weight: 700;
+  color: #fff;
+}
+.nu-load-row output {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .95), 0 0 16px rgba(0, 0, 0, .55);
+}
+
+/* HUD: calmer, consistent glass */
+.nu-glass.nu-chip,
+.nu-wallet,
+.nu-vit,
+.nu-vwarn {
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+}
+
+/* sheets & menus: tidy scrollbars, smoother entrances */
+.nu-sheet,
+.nu-pause-side {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+}
+.nu-said::-webkit-scrollbar,
+.nu-pause-main::-webkit-scrollbar,
+.nu-legend::-webkit-scrollbar { width: 8px; }
+.nu-said::-webkit-scrollbar-thumb,
+.nu-pause-main::-webkit-scrollbar-thumb,
+.nu-legend::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .22);
+  border-radius: 4px;
+}
+.nu-said::-webkit-scrollbar-track,
+.nu-pause-main::-webkit-scrollbar-track,
+.nu-legend::-webkit-scrollbar-track { background: transparent; }
+
+/* gameplay clutter off: family chat peek never pops over the game; the phone
+   hides while the pause menu is open; the pause list scrolls instead of
+   running off short screens */
+.ph-peek { display: none !important; }
+#ui:has(.nu-pause) .ph-frame { visibility: hidden !important; }
+.nu-pause-main {
+  max-height: calc(100vh - 7em);
+  overflow-y: auto;
+  padding-right: .5em;
+  scrollbar-width: thin;
+}
+
+/* loading progress: the little auto */
+.nu-road-auto svg {
+  width: 1.9em;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .6));
+}
+
+/* consistent focus everywhere */
+.nu-link:focus-visible,
+.nu-menu button:focus-visible,
+.nu-screen button:focus-visible {
+  outline: 2px solid var(--marigold, #ffb22e) !important;
+  outline-offset: 2px;
+}
+
+/* --- dialogue subtitles: a proper speaker stage -----------------------------*/
+.nu-subs {
+  align-items: flex-end;
+  padding-bottom: calc(var(--edge, 2em) * 1.35) !important;
+}
+.nu-sub {
+  max-width: min(46em, 78vw) !important;
+  background: linear-gradient(160deg, rgba(12, 7, 20, .82), rgba(7, 4, 11, .9)) !important;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: .9em;
+  padding: .75em 1.1em .85em !important;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .5);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+}
+.nu-sub b {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  font-size: .78em !important;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--who, #ffb22e) !important;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 2em;
+  padding: .25em .7em;
+  margin-bottom: .45em;
+}
+.nu-sub b::before {
+  content: '';
+  width: .5em;
+  height: .5em;
+  border-radius: 50%;
+  background: var(--who, #ffb22e);
+  box-shadow: 0 0 8px var(--who, #ffb22e);
+}
+.nu-sub p {
+  font-size: 1.06em !important;
+  line-height: 1.45 !important;
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .9);
+}
+
+/* --- HUD: toasts, objective tracker, mission timer -------------------------*/
+.nu-toasts > * {
+  background: linear-gradient(160deg, rgba(16, 10, 26, .88), rgba(9, 6, 16, .92)) !important;
+  border: 1px solid rgba(255, 178, 46, .35);
+  border-radius: .7em;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, .45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nu-obj {
+  background: linear-gradient(160deg, rgba(16, 10, 26, .82), rgba(9, 6, 16, .88)) !important;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: .7em;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nu-obj .nu-tick { filter: drop-shadow(0 0 6px rgba(255, 178, 46, .8)); }
+.nu-timer {
+  border-radius: .7em;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --- pause menu: calmer, organized -----------------------------------------*/
+.nu-pause {
+  background: rgba(7, 4, 11, .55) !important;
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+}
+.nu-pause section {
+  border-left: 2px solid rgba(255, 178, 46, .45);
+  padding-left: .8em;
+}
+.nu-pause section > small {
+  color: var(--marigold, #ffb22e);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.nu-pause .nu-btn,
+.nu-pause .nu-link {
+  transition: translate .2s ease-out, background .2s, color .2s;
+}
+.nu-pause .nu-btn:hover,
+.nu-pause .nu-link:hover { translate: .15em 0; }
+
+/* --- settings/sheets: consistent panels ------------------------------------*/
+.nu-sheetp {
+  border-radius: 1.1em !important;
+}
+.nu-sheetp > header h2 {
+  letter-spacing: .01em;
+}
+
+/* --- phone: no flash-card app or script -----------------------------*/
+.nu-kn { display: none !important; }
+.ph-peek2[data-go="kan"] { display: none !important; }
+.ph-kans { display: none !important; }
+.ph-kan { display: none !important; }
+/* intro phone: a bit smaller so the cutscene stays visible */
+.op-phone { --ph-h: min(34em, calc(100vh - var(--edge, 1.9em) * 2.6)) !important; }

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BAMBai</title>
+  <link rel="icon" type="image/png" href="/brand/icon.png" />
+  <link rel="apple-touch-icon" href="/brand/icon.png" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+<link rel="stylesheet" href="/vendor/index.css" />
+<link rel="stylesheet" href="/vendor/menus.css" />
+<link rel="stylesheet" href="/vendor/hud.css" />
+<link rel="stylesheet" href="/vendor/game.css" />
+<link rel="stylesheet" href="/vendor/ui-overrides.css" />
+  <style>
+    :root { --bg1: #1b1033; --bg2: #45156b; --accent: #ff5a1f; }
+    * { margin: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; background: #0d0a14; }
+    body { font-family: 'Big Shoulders Display', 'Inter Tight', sans-serif; }
+    #game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    #boot {
+      position: fixed; inset: 0; z-index: 10;
+      background: linear-gradient(rgba(7, 4, 11, .16) 55%, rgba(7, 4, 11, .5)), url('/brand/carousel/slide-1.jpg') center top / cover no-repeat, #0b0714;
+      transition: opacity .6s ease; color: #f5efe6;
+    }
+    #boot.done { opacity: 0; pointer-events: none; }
+    #boot-foot {
+      position: absolute; left: 50%; bottom: 6vh; translate: -50% 0;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      background: rgba(10, 8, 16, .58); border: 1px solid rgba(255,255,255,.18);
+      padding: 14px 24px; border-radius: 14px; backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.45);
+    }
+    #boot-bar { width: min(420px, 70vw); height: 6px; border-radius: 3px; background: rgba(255,255,255,.16); overflow: hidden; }
+    #boot-fill { height: 100%; width: 0%; border-radius: 3px; background: linear-gradient(90deg, #ff5a1f, #ffb01f); transition: width .2s ease; }
+    #boot-label { font-family: 'Inter Tight', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .8; min-height: 1em; }
+    #hud {
+      position: fixed; left: 14px; bottom: 12px; z-index: 5;
+      font-family: 'Inter Tight', monospace; font-size: 12px; color: rgba(255,255,255,.75);
+      text-shadow: 0 1px 2px rgba(0,0,0,.6); pointer-events: none;
+    }
+    #controls {
+      position: fixed; left: 14px; top: 12px; z-index: 5;
+      font-family: 'Inter Tight', sans-serif; font-size: 12px; color: rgba(255,255,255,.7);
+      text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    }
+    #hour-wrap {
+      position: fixed; right: 14px; bottom: 12px; z-index: 5; display: flex; align-items: center; gap: 10px;
+      font-family: 'Inter Tight', sans-serif; font-size: 12px; color: rgba(255,255,255,.8);
+      background: rgba(10, 8, 16, .55); padding: 8px 12px; border-radius: 8px; backdrop-filter: blur(6px);
+    }
+    #hour-slider { width: 180px; accent-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <script>window.__noSW = true;</script>
+  <canvas id="game"></canvas>
+  <div id="ui"></div>
+  <div id="boot">
+    <div id="boot-foot">
+      <img src="/brand/icon.png" alt="" width="40" height="40" style="border-radius:9px" />
+      <div id="boot-bar"><div id="boot-fill"></div></div>
+      <div id="boot-label">loading bambai…</div>
+    </div>
+  </div>
+  <div id="controls">click to look · WASD move · Q/E down/up · shift fast · wheel speed</div>
+  <div id="hud"></div>
+  <div id="hour-wrap"><span>hour</span><input id="hour-slider" type="range" min="0" max="24" step="0.1" /><span id="hour-val"></span></div>
+  <script>
+    // surface boot errors on the splash
+    const bootLabel = document.getElementById('boot-label');
+    addEventListener('error', (e) => { bootLabel.textContent = 'error: ' + e.message; bootLabel.style.color = '#ff8a5c'; });
+    addEventListener('unhandledrejection', (e) => { bootLabel.textContent = 'error: ' + (e.reason?.message || e.reason); bootLabel.style.color = '#ff8a5c'; });
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
