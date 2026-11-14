@@ -117,9 +117,56 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   crashes `Sd()` silently at 68% (same class as the 14% bug).
 - Koramangala data must remain recoverable (`_source/` mirror + git) before any swap.
 
-## 8. Next action needed from you
+## 8. Decisions (made 2026 session — supersedes "next action needed")
 
-1. Confirm: keep brand **BAMBai**? (yes/no)
-2. Confirm: **fictional names, real colors/fares**? (yes/no)
-3. Pick **Path A** (you run Overpass → hand me JSON) or **Path B** (I hand-author a
-   minimal core now, approx coords).
+1. Brand **BAMBai** — KEPT.
+2. **Fictional names, real colors/fares** — CONFIRMED (BEST red, kaali-peeli, MH plates, ₹27/₹18).
+3. **Path A chosen** — the sandbox network blocker is GONE: Overpass works from here
+   (`overpass-api.de`, `overpass.private.coffee`, `overpass.kumi.systems`; all three
+   throttle under load — retry with backoff, never assume the endpoint is dead).
+   `overpass.osm.ch` answers but serves an EMPTY database — do not use.
+
+## 9. Progress log
+
+- git initialized; baseline commit of the untouched Koramangala build (`66622ae…`,
+  amended to exclude node_modules/.pnpm-store via new .gitignore).
+- `reference/osm/` — split Overpass queries (q1 highways / q2 green+water+rail /
+  q3 POI / q4 buildings) over core bbox **18.905,72.815 → 18.945,72.845**
+  (Colaba → CSMT → Mahalaxmi). Full-bbox queries get rejected when servers are busy;
+  the split ones pass.
+- `reference/osm/fetch-osm.ps1` — background retry loop (rotates endpoints, backoff).
+  Run via `Start-Process powershell -ArgumentList '-File','reference\osm\fetch-osm.ps1'
+  -RedirectStandardOutput 'reference\osm\fetch-osm.log'`. Log + `sm-*.json` outputs
+  land in `reference/osm/`.
+- **sm-highways.json fetched: 998 KB of real South Mumbai road ways.**
+
+## 10. map.js data flow (verified this session — extends §3)
+
+- `Ot = {id:'koramangala', name, ...B, PARKING:[...B.PARKING.filter(…)]}` → `var $=Ot`
+  (exported as `t` → `Ee` in city.js). Post-spread fixups mutate flyover edge medians.
+- `B = Ge({bounds:r, names:et, nodes:a, edges:o, blocks:z?.blocks??c, flyover:l,
+  lake:u, parks:d})` — `Ge` is the layout builder; it computes blocks/side data from
+  the road graph. `z = ae({dip spec}, a, edges, c)` builds the toniqueDip from a
+  named road first.
+- RAW authored literals (what a Mumbai generator must emit):
+  - `a` — nodes `[[x,z],…]` in game meters (already projected from lat/lon).
+  - `o` — edges `[a, b, rank, nameIdx, width, lanes, medianFlag, medianW?, struct?]`.
+  - `i` — road-name list (one dot-separated string split on `.`).
+  - `et = i.map(e => $e[e] ?? e)` — **`$e` is the real→fictional rename map**
+    (e.g. real OSM name → game name). Mumbai version maps Marine Drive etc. to
+    fictional names here.
+  - `r` bounds, `c` blocks seed, `l` flyover, `u` lake, `d` parks + the spread rest
+    (PLACES, landmarks, footprints, shops, medians, skywalks, elevated, drains…).
+- Projection helper is the top-of-file `t([S,W,N,E], scale, {lat,lon,R1,R2,sL}, [bbox])`
+  — Mumbai needs its own bbox + LAT0/LON0 (~18.92, 72.83) feeding the same `toGame`.
+
+## 11. Next steps
+
+1. Wait for fetcher → q2/q3/q4 JSONs (green/water/rail, POI, buildings).
+2. Write `reference/osm/osm2map.cjs`: OSM JSON → raw literals above (nodes/edges/
+   names/blocks seed/parks/lake/landmarks/footprints), reusing Ge by importing
+   `_source/map.js` in Node is NOT possible (browser globals) — port `Ge` inputs
+   instead, or splice generated literals into a copy of map.js.
+3. Splice or shim: keep all map.js code, replace only data literals →
+   `vendor/map.js` Mumbai build; mirror to `_source/`.
+4. Boot check (`node shot.cjs` sweep) before any label/livery work.

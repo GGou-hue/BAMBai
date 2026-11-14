@@ -1,0 +1,20 @@
+[out:json][timeout:300];
+(
+  way(18.90,72.81,18.96,72.85)["highway"~"primary|secondary|tertiary|residential|trunk|motorway|unclassified|service|living_street|pedestrian|footway|path|cycleway|steps"];
+  way(18.90,72.81,18.96,72.85)["building"];
+  way(18.90,72.81,18.96,72.85)["landuse"~"park|grass|recreation_ground|cemetery|meadow|forest"];
+  way(18.90,72.81,18.96,72.85)["leisure"~"park|garden|pitch|playground|track"];
+  way(18.90,72.81,18.96,72.85)["natural"~"water|coastline|beach|wood"];
+  relation(18.90,72.81,18.96,72.85)["natural"~"water"];
+  way(18.90,72.81,18.96,72.85)["railway"~"rail|light_rail|tram|subway"];
+  way(18.90,72.81,18.96,72.85)["amenity"~"parking|bus_station|fuel|school|college|university|hospital|place_of_worship|marketplace|police|fire_station|cinema|theatre|library|community_centre|townhall|courthouse|bank"];
+  way(18.90,72.81,18.96,72.85)["shop"];
+  way(18.90,72.81,18.96,72.85)["tourism"];
+  way(18.90,72.81,18.96,72.85)["historic"];
+  way(18.90,72.81,18.96,72.85)["man_made"~"tower|minaret|lighthouse|pier|breakwater|storage_tank"];
+  way(18.90,72.81,18.96,72.85)["waterway"~"river|canal|stream|dock"];
+  relation(18.90,72.81,18.96,72.85)["building"];
+  relation(18.90,72.81,18.96,72.85)["landuse"~"park|grass|recreation_ground"];
+  relation(18.90,72.81,18.96,72.85)["leisure"~"park|garden|pitch"];
+);
+out body; >; out skel qt;
