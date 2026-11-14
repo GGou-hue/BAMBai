@@ -271,3 +271,15 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   fails, rescued 0) and per-vertex spike-bevel in insetPoly (perturbed passing faces, sides-losing
   blocks 89 -> 106). Reverted to original miter-with-limit. Documented as accepted limitation;
   proper fix would be a clipper-style offset (big change, not worth it for parking density).
+- Playthrough sweep (headless, `sweep-play2.cjs`): boot 410s -> play -> intro cutscene plays
+  (subs OK) -> chapter card "Bambai / KOLVADA / Chapter 1" (P1.5 fix verified at runtime,
+  no KORAMANGALA) -> first mission banner "Shobha Aunty's PG" + objective "Get on the
+  scooter" -> 74 u of movement in 32s of input, zero page errors. One real defect found:
+  `models/vehicles/decker.glb` 404 - the decker kind was added to the GLB preload list `cn`
+  but has no model file (it builds procedurally on the bus GLB via _dd->_t). Fixed by
+  removing `decker` from `cn` (loader skips it; vehicle viewer still supports ?kind=decker;
+  verified: viewer boots with zero errors). Dip safety: no PLACES/anchors within 65 u of the
+  re-activated trench (`check-dip-safety.mjs`).
+- Open user decision: Arjun's hometown "Gubbi" (4x in game.js intro/chatter, browser-TTS
+  only, no WAVs) - real Karnataka town; keep (inter-state migrant story reads fine) or
+  fictionalize like the rest? Not decided.
