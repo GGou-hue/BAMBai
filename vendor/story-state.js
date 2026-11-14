@@ -100,11 +100,12 @@ class StoryState {
     return { advanced };
   }
 
-  // engine hook: called by game.js when a vg mission completes
+  // engine hook: called by game.js when a vg/jg mission completes
   onEngineMission(engineId) {
     if (!this.state) return;
     if (!this.state.engineDone.includes(engineId)) this.state.engineDone.push(engineId);
-    const storyId = ENGINE_MAP[engineId];
+    // explicit map first, then auto-map: engine id === story id available to this protagonist
+    const storyId = ENGINE_MAP[engineId] ?? (story.missionById[engineId]?.paths.includes(this.state.who) ? engineId : null);
     let res = { mapped: !!storyId, advanced: null };
     if (storyId) res = { ...res, ...this.completeMission(storyId) };
     else this.persist();
