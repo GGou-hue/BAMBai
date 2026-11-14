@@ -1,0 +1,48 @@
+{
+ "remove": [
+  "AUTO-Q-11",
+  "BAN-EVT-01",
+  "BAN-EVT-02",
+  "BAN-EVT-03",
+  "BAN-EVT-04",
+  "BAN-EVT-08",
+  "BAN-EVT-09",
+  "BAN-POL-02",
+  "BAN-POL-03",
+  "BAN-POL-06",
+  "BAN-V-01",
+  "BAN-V-02",
+  "BAN-V-03",
+  "BAN-V-04",
+  "HRD-09",
+  "HRD-25",
+  "HRD-26",
+  "HRD-28",
+  "HRD-29",
+  "VEH-AUTO-01",
+  "VEH-AUTO-04",
+  "VEH-AUTO-10"
+ ],
+ "keepPinned": [
+  "BLR-BAR-01",
+  "HRD-11",
+  "SHOP-01",
+  "SHOP-02",
+  "SHOP-15",
+  "SHOP-16",
+  "SHOP-22",
+  "SHOP-28",
+  "SHOP-36",
+  "SHOP-39"
+ ],
+ "keepPair": [
+  "SHOP-01_2",
+  "SHOP-02_2",
+  "SHOP-15_2",
+  "SHOP-16_2",
+  "SHOP-22_2",
+  "SHOP-28_2",
+  "SHOP-36_2",
+  "SHOP-39_2"
+ ]
+}

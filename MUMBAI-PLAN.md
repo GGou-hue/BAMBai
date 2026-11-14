@@ -283,3 +283,16 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
 - Open user decision: Arjun's hometown "Gubbi" (4x in game.js intro/chatter, browser-TTS
   only, no WAVs) - real Karnataka town; keep (inter-state migrant story reads fine) or
   fictionalize like the rest? Not decided.
+- Kannada art audit DONE (`build-art-sheets.mjs` + browser contact sheets + vision review,
+  evidence in reference/osm/sheets/): ALL 192 `kannada:unreviewed` assets confirmed Kannada+Latin
+  bilingual; 40 carry Bangalore-specific content (Koramangala/Bengaluru/Sampige/Ward-121/
+  Rajyotsava/Donne Biryani/Mysore Pak...). art/index.json updated: kannada:"yes" x192,
+  stale:"bangalore" x40. 10 of the 40 are pinned by key in engine code (8 SHOP-* day signs +
+  BLR-BAR-01 + HRD-11) - kept, along with their 8 night-pair variants, to avoid breaking pins
+  and day/night mismatches. The 22 unpinned stale assets REMOVED from index.json rotation
+  (4 political banners incl. BAN-V Ward-121 set, 6 event banners, 5 hoardings, 4 auto decals,
+  AUTO-Q-11); pools stay non-empty except `pole` (pick() returns null, placement skips
+  gracefully - verified in-engine, signs render normally). Remaining exposure: 152 generic
+  Kannada+Latin assets (stylization-level, unreadable at gameplay distance) + 18 kept
+  Bangalore-content assets (pinned pairs) - fix paths: surgical text patching or regeneration;
+  NOT started (user decision on budget).
