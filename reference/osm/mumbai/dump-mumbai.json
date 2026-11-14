@@ -1,7 +1,7 @@
 {
  "id": "mumbai",
- "nodes": 3160,
- "edges": 3866,
+ "nodes": 3181,
+ "edges": 3878,
  "bounds": {
   "minX": -919.4,
   "maxX": 874.7,
@@ -100,13 +100,13 @@
    "label": "Junction Square mall"
   },
   "hospital": {
-   "x": 235.15,
+   "x": 235.09,
    "z": -1009.58,
    "ry": -1.465,
    "label": "Rain Tree Hospital"
   },
   "arogyaGate": {
-   "x": 235.15,
+   "x": 235.09,
    "z": -1009.58,
    "ry": -1.465,
    "label": "Arogya Nagar Medical College & Hospital"
@@ -196,8 +196,8 @@
    "label": "SparkWerk Campus"
   },
   "vanijya": {
-   "x": 251.97,
-   "z": -849.75,
+   "x": 251.76,
+   "z": -851.08,
    "ry": -1.524,
    "label": "Bambai Vanijya Sankeerna"
   },

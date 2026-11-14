@@ -242,15 +242,16 @@ const uniformShrink = (poly, s) => {
   return poly.map(p => [cx + (p[0] - cx) * s, cz + (p[1] - cz) * s]);
 };
 const insetOk = p => p.length >= 4 && isSimple(p) && thinness(p) >= 0.12 && Math.abs(area2(p)) >= 120;
-const insetBlocks = [];
+const insetBlocks = []; let tierFull = 0, tier6 = 0, tier35 = 0, tierU = 0;
 let insetFalls = 0;
 for (const poly of blocks) {
-  let out = insetOnce(poly, 1);
-  if (!insetOk(out)) { out = insetOnce(poly, 0.6); insetFalls++; }
-  if (!insetOk(out)) { out = insetOnce(poly, 0.35); insetFalls++; }
-  if (!insetOk(out)) { out = uniformShrink(poly, 0.82); insetFalls++; }
-  if (insetOk(out)) insetBlocks.push(out);
+  let out = insetOnce(poly, 1), tag = 0;
+  if (!insetOk(out)) { out = insetOnce(poly, 0.6); tag = 1; insetFalls++; }
+  if (!insetOk(out)) { out = insetOnce(poly, 0.35); tag = 2; insetFalls++; }
+  if (!insetOk(out)) { out = uniformShrink(poly, 0.82); tag = 3; insetFalls++; }
+  if (insetOk(out)) { insetBlocks.push(out); if (tag === 0) tierFull++; else if (tag === 1) tier6++; else if (tag === 2) tier35++; else tierU++; }
 }
+console.log(`inset tiers: full=${tierFull} 60%=${tier6} 35%=${tier35} uniform=${tierU}`);
 console.log(`inset fallbacks: ${insetFalls}/${blocks.length} faces needed a smaller inset`);
 const cleanBlocks = sanitize(insetBlocks, 120, 'blocks');
 const cleanParks = sanitize(greenWays, 300, 'parks');

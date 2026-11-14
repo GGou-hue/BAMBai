@@ -249,3 +249,25 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   Residual truly-unverifiable: vendor-1..13, street-shout-1..13, pairs-1..4a/b (likely Kannada
   speech that en-US recognition cannot score), rj-all-news/ad-cricket/ad-rainbow/ad-xerox
   (no hits, content unknown), darshini/nimsha (likely ambience babble).
+
+## Progress log (session 6) — map polish: crossings + inset tiers
+- True X-crossings audit (new `reference/osm/find-crossings.mjs`, validates the spliced M.t graph):
+  3 crossings found, all at one spot (Sagar Flyover x Rangmahal Road, endpoint-adjacent t~1.0/u~0.008).
+  Root cause: near-duplicate nodes (0.36-4.3 u apart) created AFTER stage1's early merge pass
+  (planarize splits + T-junction cuts) never re-merged -> flyover chain broken, Rangmahal cut through.
+- Fix: stage1 "planarize step 3" pass (patched in via `patch-stage1-pass3.mjs`): union-find merge of
+  near-duplicate nodes <=2.0 u (position averaging), endpoint snap onto edge interiors <=2.2 u (with
+  splits), then re-split crossings; whole pass runs TWICE (snap writes full-precision positions that
+  re-create near-duplicates) and snaps round to 0.1. Result: nodes 3181 / edges 3878, 0 true
+  X-crossings, all 38 anchors OK, dump OK. Verified in-engine (shots/junction-fix2/3.png; scene probe
+  `probe-junction.cjs`: no elevated road mesh at the junction - vision-model "raised segment" was a
+  false read, third such; keep pixel/geometry-verifying).
+- Inset-tier instrumentation (`instrument-tier.mjs`, kept in stage23): full=298 60%=148 35%=61
+  uniform=28. Side-ranking analysis: map.js Ge ranks a side only if |dist(mid, centerline) - w/2|
+  < 2.5; the full building line is w/2+1.2 -> passes; 0.6 tier passes only on narrow roads
+  (w<=~13); 0.35 and uniform tiers NEVER pass -> 89 blocks (~17%) have no roadside placement
+  (parking/spawns), buildings still render + gap-fill.
+- Attempted fixes, both reverted: whole-polygon bevel inset (reflex corners bowtie -> isSimple
+  fails, rescued 0) and per-vertex spike-bevel in insetPoly (perturbed passing faces, sides-losing
+  blocks 89 -> 106). Reverted to original miter-with-limit. Documented as accepted limitation;
+  proper fix would be a clipper-style offset (big change, not worth it for parking density).
