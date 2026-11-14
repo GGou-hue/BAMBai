@@ -7,6 +7,112 @@ const S1 = JSON.parse(fs.readFileSync('reference/osm/mumbai/stage1.json', 'utf8'
 const S23 = JSON.parse(fs.readFileSync('reference/osm/mumbai/stage23.json', 'utf8'));
 const src = fs.readFileSync('reference/osm/mumbai/map-koramangala-src.js', 'utf8');
 
+// ---- 0. rename real OSM road names -> fictional Bambai names ----
+// User decision: fictional names, real geography/colors/fares. Majors get
+// hand-picked evocative names; the rest get an invented pool word + their
+// original suffix (Marg/Road/Street/Lane/...). Generic colonial names that
+// could be anywhere stay unchanged.
+const RENAMES = {
+  'Marine Drive': `Moti Haar Marg`,
+  'Mumbai Coastal Road': `Darya Coastal Road`,
+  'Mumbai Coastal Road - Phase I': `Darya Coastal Road - Phase I`,
+  'Chhatrapati Shivaji Maharaj Marg': `Killa Marg`,
+  'Chhatrapati Shivaji Maharaj Road': `Killa Road`,
+  'Shahid Bhagat Singh Road': `Kolvada Main Road`,
+  'Shahid Bhagat Singh Marg': `Azaad Chowk Marg`,
+  'Mahatma Gandhi Road': `Bapu Wadi Road`,
+  'Dr Dadabhai Naoroji Road': `Ghadi Ghar Road`,
+  'Horniman Circle': `Banyan Circle`,
+  'Wellington Circus': `Deepmala Circus`,
+  'Strand Road': `Ghaat Road`,
+  'P D Mello Road': `Bandar Road`,
+  "P D' Mello Road": `Bandar Road`,
+  "A D'Mello Road": `Bandar Road`,
+  'Maharshi Karve Road': `Rangmahal Road`,
+  'Jamshedji Tata Road': `Nakhwa Road`,
+  'Sir Dorab Tata Road': `Nakhwa Road`,
+  'Veer Nariman Road': `Bankers Row`,
+  'Backbay Depot Road': `Depot Road`,
+  'Marine Lines Flyover': `Sagar Flyover`,
+  'J. J. Flyover': `Juna Flyover`,
+  'CSMT Bus Station Road': `Station Bus Stand Road`,
+  'Apollo Bandar Road/P J Ramchandani Marg (Strand Raod)': `Bandar Head Road`,
+  'Narottam Morarjee Marg': `Jahaj Marg`,
+  'Shri Haji Niyaz Ahmed Azmi Marg': `Firni Marg`,
+  'Boman Behram Road (Mere Weather Road)': `Baman Wadi Road`,
+  'Boman Behram Road': `Baman Wadi Road`,
+  'B.K. Boman Behram Road': `Baman Wadi Road`,
+  'Walchand Hirachand Road (Fort Street)': `Jahaz Wadi Road`,
+  'Walchand Hirachand Road': `Jahaz Wadi Road`,
+  'Mahakavi Bhushan Road (Lansdowne Road)': `Kavi Wadi Road`,
+  'Dr V B Gandhi Road (Forbes Street)': `Vaidya Wadi Road`,
+  'N Thackersey Road (Carnegy Road)': `Kavva Road`,
+  'Karmaveer Bhaurao Patil Road': `Sena Wadi Road`,
+  'Karmaveer Bhaurao Patil Marg (Mayo Road)': `Sena Wadi Road`,
+  'Ramjibhai Kamani Road (Nichol Road)': `Kamani Wadi Road`,
+  'Navjeevan Wadi (3rd Dhobitalao Lane)': `Naya Wada (3rd Dhobi Gully Lane)`,
+  'G Road (MGCM Anuvrat Marg)': `G Road`,
+  'Nanabhai Moos Marg (Upper Colaba Road)': `Uparkot Road`,
+  'Perin Nariman Street (Bazar Gate Street)': `Perin Bazaar Street`,
+  'Sassoon Complex Naval Officers Complex': `Nauka Complex`,
+  'Bombay Hospital Avenue': `Dawa Khana Avenue`,
+  'Maharashtra Chamber of Commerce Lane': `Vyapari Chamber Lane`,
+  'Indian Merchants Chamber Road': `Vyapari Sabha Road`,
+  'Bombay Samachar Marg': `Akhbaar Marg`,
+  'Mumbai Samachar Marg': `Akhbaar Marg`,
+  "Women's Graduate Union Road": `Mahila Vidyalaya Road`,
+  'Freedom Fighter Ramnanth Goenka Marg': `Swatantrya Veer Marg`,
+  'Justice Devshankar V Vyas Marg': `Nyaya Marg`,
+  'Dr Simon C Farnandes Marg': `Doktorn Marg`,
+  'David Sassoon Library Marg': `Granthalay Marg`,
+};
+const KEEP_GENERIC = new Set([
+  'D Road', 'Cross Road No 2', 'Road No 3', 'Store Lane', 'Green Street',
+  'Garden Road', 'Battery Street', 'Bakery Lane', 'Barrack Road',
+  'Cinema Road', 'University Road', 'Police Court Lane', 'Convent Street',
+  'Trinity Street', 'Wilson Road', 'Oxford Road', 'Henry Road', 'Walton Road',
+  'Stevens Street', 'Rutherfield Street', 'Ash Lane', 'Windy Hall Lane',
+  'Mint Road', 'Bank Street Cross Lane', 'MCC Cross Lane', 'G Road',
+  'Barack Road', 'Cinema Road;Barack Road',
+]);
+const POOL = [`Firki`, `Lehar`, `Sagar`, `Moti`, `Badal`, `Chandni`, `Darya`,
+  `Bandar`, `Topkhana`, `Chhatri`, `Bageecha`, `Kaman`, `Tabela`, `Aangan`,
+  `Jhilmil`, `Sona`, `Rupali`, `Tamanna`, `Kadamb`, `Amaltas`, `Behada`,
+  `Karvanda`, `Rambha`, `Menaka`, `Urvashi`, `Champak`, `Mogra`, `Raatrani`,
+  `Aboli`, `Genda`, `Jui`, `Shevanti`, `Phulrani`, `Bahar`, `Mausam`, `Hawa`,
+  `Toofan`, `Megh`, `Kinar`, `Nauka`, `Majhi`, `Kot`, `Buruj`, `Talab`,
+  `Bawdi`, `Owara`, `Morpankh`, `Sarang`, `Motiya`, `Subah`, `Dopahar`,
+  `Sandhya`, `Nisha`, `Pawan`, `Kesuda`, `Palash`, `Sonchafa`, `Parijat`,
+  `Ketaki`, `Shirish`, `Kanchan`, `Karanj`, `Wadli`, `Gulmohar`, `Mohini`,
+  `Chhaya`, `Roshni`, `Kirana`, `Jyoti`, `Deepmala`, `Mangalya`, `Kesar`,
+  `Kumkum`, `Halad`, `Aabha`, `Taraka`, `Nagvel`, `Zenda`, `Dhwaj`, `Pataka`];
+const ORD = [``, ``, `Second`, `Third`, `Fourth`, `Fifth`, `Sixth`, `New`, `Old`];
+const SUFFIX_RE = /( (?:Marg|Road|Street|Lane|Path|Circle|Cross Road|Cross Lane|Flyover|Drive|Circus|Avenue|St|Gully))$/;
+const usedNames = new Set(KEEP_GENERIC);
+let poolIdx = 0;
+const fictionalOne = name => {
+  if (!name) return name;
+  if (RENAMES[name]) return RENAMES[name];
+  if (KEEP_GENERIC.has(name)) return name;
+  const base = name.replace(/ \([^)]*\)$/, ``);
+  if (RENAMES[base]) return RENAMES[base];
+  if (KEEP_GENERIC.has(base)) return name;
+  const m = base.match(SUFFIX_RE);
+  const suffix = m ? m[1] : ``;
+  const stem = m ? base.slice(0, base.length - suffix.length) : base;
+  const word = POOL[poolIdx++ % POOL.length];
+  const nUse = [...usedNames].filter(u => u === word + suffix || u.startsWith(word + suffix + ` `)).length;
+  let out = nUse ? `${ORD[Math.min(nUse + 1, ORD.length - 1)]} ${word}${suffix}`.trim() : word + suffix;
+  usedNames.add(out);
+  return out;
+};
+const renameName = name => name.split(`;`).map(fictionalOne).join(`;`);
+const before = S1.names.filter(Boolean).length;
+S1.names = S1.names.map(renameName);
+const uniq = new Set(S1.names.filter(Boolean));
+console.log(`renamed ${before} road names -> ${uniq.size} unique fictional names`);
+console.log(`sample: ` + S1.names.filter(Boolean).slice(0, 8).join(` | `));
+
 const J = a => JSON.stringify(a);
 // ---- 1. the raw-data var chain (n,r,i,a,o,s,c,l,u,d,f,p,m,h,g,_,v,y,b,x,S,C,w) ----
 const bboxLatLon = S1.bbox;
@@ -229,23 +335,23 @@ const Z_TXT = `var Z={` + Z_ENTRIES.map(([k, v]) => `${k}:${v}`).join(`,`) + `};
 
 // ---- 4. Mumbai PLACES (vt) — same keys, Mumbai labels ----
 const VT_TXT = `vt={
-  spawn:Q(Z.pg,\`Outside the Colaba PG\`,-3),pg:Q(Z.pg,\`The Colaba PG\`),pgScooter:(()=>{
+  spawn:Q(Z.pg,\`Outside the Kolvada PG\`,-3),pg:Q(Z.pg,\`The Kolvada PG\`),pgScooter:(()=>{
     let e=R(V,Z.pg.x+Math.sin(Z.pg.ry)*9+5,Z.pg.z+Math.cos(Z.pg.ry)*9,-1.6);
     return{x:+e.x.toFixed(2),z:+e.z.toFixed(2),ry:+L(e.ry+Math.PI/2).toFixed(3),label:\`PG scooter spot\`}
   })(),darshini:Q(Z.darshini,\`Merwani's Irani Darshini\`),canopyTowerC:Q(Z.canopy,\`Canopy Heights, Tower C gate\`),lakeBund:{
-    ...X(.05,6.5),label:\`Backbay promenade path\`
+    ...X(.05,6.5),label:\`Moti Haar promenade path\`
   },sluiceGate:{
-    ...X(.85,2.5),label:\`Sewri sluice gate\`
+    ...X(.85,2.5),label:\`Retibandar sluice gate\`
   },surveyPegs:{
     ...X(.55,6),label:\`Survey pegs on the mudflats\`
   },drainInlet:{
     ...X(.8,3),label:\`Stormwater outfall inlet\`
-  },autoStand:ht(U.autoStand,\`Auto stand\`),xeroxShop:Q(Z.xerox,\`Sai Xerox & Notary\`),brokerOffice:Q(Z.broker,\`BAMBAI Sites & Layouts (land broker)\`),tankerDepot:Q(Z.depot,\`Harbour tanker depot\`),pub:Q(Z.pub,\`Twist Brewing Co.\`),mall:Q(Z.mall,\`Junction Square mall\`),hospital:Q(Z.hospital,\`Rain Tree Hospital\`),arogyaGate:Q(Z.arogyaGate,\`Arogya Nagar Medical College & Hospital\`),policeOutpost:Q(Z.police,\`Police outpost\`),checkpoint:gt(U.checkpoint,\`Night checkpoint, Shahid Bhagat Singh Road\`),park:{
+  },autoStand:ht(U.autoStand,\`Auto stand\`),xeroxShop:Q(Z.xerox,\`Sai Xerox & Notary\`),brokerOffice:Q(Z.broker,\`BAMBAI Sites & Layouts (land broker)\`),tankerDepot:Q(Z.depot,\`Harbour tanker depot\`),pub:Q(Z.pub,\`Twist Brewing Co.\`),mall:Q(Z.mall,\`Junction Square mall\`),hospital:Q(Z.hospital,\`Rain Tree Hospital\`),arogyaGate:Q(Z.arogyaGate,\`Arogya Nagar Medical College & Hospital\`),policeOutpost:Q(Z.police,\`Police outpost\`),checkpoint:gt(U.checkpoint,\`Night checkpoint, Kolvada Main Road\`),park:{
     x:Z.park.x,z:Z.park.z,ry:Z.park.ry,label:\`Neighbourhood park\`
-  },foodStreet:Q(Z.foodStreet,\`Colaba food street\`,0),busStop:ht(U.busStop,\`Bus stop, Maharshi Karve Road\`,1.6),mallBusStop:ht(U.mallBusStop,\`Bus stop, Junction Square\`,1.6),teaStall:ht(U.teaStall,\`Tea stall\`,1.4),babusBar:(()=>{
+  },foodStreet:Q(Z.foodStreet,\`Kolvada food street\`,0),busStop:ht(U.busStop,\`Bus stop, Rangmahal Road\`,1.6),mallBusStop:ht(U.mallBusStop,\`Bus stop, Junction Square\`,1.6),teaStall:ht(U.teaStall,\`Tea stall\`,1.4),babusBar:(()=>{
     let e=Z.babusBar,[t,n]=H(U.babusBar);
     return Q(e,\`Babu's Bar\`,+((t-e.x)*Math.cos(e.ry)-(n-e.z)*Math.sin(e.ry)).toFixed(1))
-  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),tamraHouse:Q(Z.tamraHouse,\`Tamra House\`),santhe:Q(Z.santhe,\`Crawford Santhe\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
+  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),tamraHouse:Q(Z.tamraHouse,\`Tamra House\`),santhe:Q(Z.santhe,\`Mota Bazaar\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
 },yt=`;
 
 // ---- 5. splice ----
@@ -287,7 +393,7 @@ cut(`glassRuns:[{a:H({lat:12.9356,lon:77.6114})`, `hw:48}]`, `glassRuns:[]`, `gl
 cut(`roofAds:[{a:H({lat:12.9396,lon:77.6244})`, `hw:40,bare:.3}]`, `roofAds:[]`, `roofAds`);
 // 5k. city id/name
 if (out.includes('id:`koramangala`,name:`Koramangala`'))
-  out = out.replace('id:`koramangala`,name:`Koramangala`', 'id:`mumbai`,name:`South Mumbai`');
+  out = out.replace('id:`koramangala`,name:`Koramangala`', 'id:`mumbai`,name:`Bambai`');
 else console.log('note: Ot id/name literal not found (already renamed?)');
 // glass:wt.map(...) — wt is [] now; leave the .map (safe).
 // medians:Ct.map(...) — Ct is []; leave.

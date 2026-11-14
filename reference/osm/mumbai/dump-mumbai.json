@@ -13,13 +13,13 @@
    "x": 52.05,
    "z": 131.49,
    "ry": 1.706,
-   "label": "Outside the Colaba PG"
+   "label": "Outside the Kolvada PG"
   },
   "pg": {
    "x": 52.46,
    "z": 134.46,
    "ry": 1.706,
-   "label": "The Colaba PG"
+   "label": "The Kolvada PG"
   },
   "pgScooter": {
    "x": 69.98,
@@ -43,13 +43,13 @@
    "x": -1743.75,
    "z": -2624.64,
    "ry": -1.816,
-   "label": "Backbay promenade path"
+   "label": "Moti Haar promenade path"
   },
   "sluiceGate": {
    "x": -836.19,
    "z": 985.9,
    "ry": -2.72,
-   "label": "Sewri sluice gate"
+   "label": "Retibandar sluice gate"
   },
   "surveyPegs": {
    "x": -25.93,
@@ -121,7 +121,7 @@
    "x": 139.44,
    "z": 8.64,
    "ry": -2.289,
-   "label": "Night checkpoint, Shahid Bhagat Singh Road"
+   "label": "Night checkpoint, Kolvada Main Road"
   },
   "park": {
    "x": -72.449109355407,
@@ -133,13 +133,13 @@
    "x": -64.59,
    "z": 132.55,
    "ry": -2.507,
-   "label": "Colaba food street"
+   "label": "Kolvada food street"
   },
   "busStop": {
    "x": 172.59,
    "z": -512.43,
    "ry": -0.942,
-   "label": "Bus stop, Maharshi Karve Road"
+   "label": "Bus stop, Rangmahal Road"
   },
   "mallBusStop": {
    "x": 127.63,
@@ -211,7 +211,7 @@
    "x": 182.23,
    "z": -800.62,
    "ry": -1.079,
-   "label": "Crawford Santhe"
+   "label": "Mota Bazaar"
   },
   "oho": {
    "x": -49.1,
