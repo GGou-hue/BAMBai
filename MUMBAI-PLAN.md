@@ -234,4 +234,8 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   rj-silkboard/*, rj-hale-oldcity/coffee (7), ad-sites, darshini-1..4, nimsha-1..3,
   lakecough-1..2 (~42 certain). Likely-stale (unverifiable without listening): vendor-1..13,
   street-shout-1..13, delhi-1..9, pairs-1..4a/b, fan-1..6, rj-gully/hustle/all-news (~60).
-  Decision pending: leave as-is / text-only fix / TTS re-record (Windows SAPI possible).
+  Decision: Option C DONE (commit 07ce6fb) - text swept + 36 stale WAVs re-recorded with
+  Windows SAPI (David). True stale set was ~37, not 249: story VO is runtime TTS (already
+  swept); a git-history text diff (d77cce2~1) proved only 3 chatter lines were ever swept
+  and the rest already matched. Residual: ~60 clips unverifiable without listening
+  (vendor, street-shout, pairs, fan, rj-gully/hustle/all-news, darshini, nimsha).
