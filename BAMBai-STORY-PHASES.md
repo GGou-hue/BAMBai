@@ -131,3 +131,12 @@ Build thread:
 - Keep `vendor/` + `_source/` mirrors byte-identical; `node --check` before commit.
 - Map changes only through the stage pipeline (stage1â†’23â†’4) + validators (crossings, anchors, dump).
 - Vision-model claims need pixel/geometry verification; long jobs run in background with logs; PowerShell quirks (no inline backticks; UTF-16 redirects).
+
+---
+
+## S0 — DONE (this session)
+- Canon audit: `reference/story/canon-audit.mjs` -> `reference/story/canon-deltas.md` (13 found / 31 partial / 15 new). Key finds: Shetty, KB, Veer Pawar already in build; 6 of 7 radio stations exist in vendor/audio.js (only Bambai After Dark is new); genuinely new cast: Bai Firoz, Salvi, Pradhan, Dr Farah; Operation Clean Shore plot machinery new.
+- Data layer built: `story/characters.json` (4 protagonists full bible data + 15 NPCs), `story/chapters.json` (20 ch / 4 acts), `story/missions.json` (57 ids = 48 numbered cores + 9 Ch1 parallel-path missions, per-protagonist differences encoded), `story/endings.json` (A-D + hidden variables), `story/radio.json` (7 stations + 5-tower Radio Tower Network with real referents), `story/dialogue/schema.json` + first scene `ch1-the-file.json` (bible §7 fully encoded, 15 lines).
+- Engine: `vendor/story.js` (+ identical `_source/` mirror) loads all data; hooked in `src/main.js` under `?story=1` -> `window.__story`. Note: vendor/ is served raw by the vite middleware — no Vite transforms (import.meta.glob unavailable); scene files imported explicitly.
+- Validator: `reference/story/check-story.mjs` — OK (4 protagonists, 20 chapters, 57 mission ids/48 core, 4 endings, 7 stations, 5 towers, 1 scene). 12 warnings: bible §3 requires >=3 exclusive missions per protagonist per act; Acts II-IV currently have 0 — shared missions must be differentiated in S7-S9.
+- In-engine probe `reference/story/probe-story.cjs`: story handle live, zero page errors.

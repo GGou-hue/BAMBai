@@ -15,6 +15,13 @@ initTitleMenu();
 initBranding();
 
 const params = new URLSearchParams(location.search);
+// S0 story-data hook: ?story=1 loads the campaign data layer and logs a summary.
+if (params.get('story') === '1') {
+  import('../vendor/story.js').then(({ default: story }) => {
+    window.__story = story;
+    console.log(`[story] v${story.version}: ${story.protagonists.length} protagonists, ${story.chapters.length} chapters, ${story.missions.length} missions, ${story.endings.length} endings, ${story.scenes.length} scenes`);
+  });
+}
 const fill = document.getElementById('boot-fill');
 const label = document.getElementById('boot-label');
 const progress = (p, text) => {

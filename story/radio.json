@@ -1,0 +1,26 @@
+{
+  "$schema": "Radio identity (bible §15) + the Radio Tower Network. Stations marked inBuild:true exist in vendor/audio.js today. Towers are fictionalized from real Mumbai transmitter sites (S0 grounding: worldradiomap.com/in/mumbai — the 300m Worli Doordarshan lattice tower carries nearly the whole commercial FM dial; community stations transmit from their own neighborhood masts).",
+  "stations": [
+    { "id": "bambaiya-fm", "name": "Bambaiya FM", "inBuild": true, "flavor": "city mainstream; carries the case's news bulletins" },
+    { "id": "gully-indie", "name": "Gully Indie", "inBuild": true, "flavor": "street music and youth culture" },
+    { "id": "hale-gaani", "name": "Hale Gaani", "inBuild": true, "flavor": "old songs, memory and grief" },
+    { "id": "hustle-fm", "name": "Hustle FM", "inBuild": true, "flavor": "work, money, hustle culture" },
+    { "id": "bambai-traffic-radio", "name": "Bambai Traffic Radio", "inBuild": true, "flavor": "live traffic; chase and route coverage" },
+    { "id": "my-radio", "name": "My Radio", "inBuild": true, "flavor": "player saved songs" },
+    { "id": "bambai-after-dark", "name": "Bambai After Dark", "inBuild": false, "flavor": "NEW (bible §15): late-night confessional hour; night-act atmosphere" }
+  ],
+  "towers": [
+    { "id": "varli-prasarayan-tower", "name": "Varli Prasarayan Tower", "nickname": "the Mother Tower", "realReferent": "300 m red-white Worli Doordarshan lattice tower (19.007N 72.820E) — Radio City 91.1, Mirchi 98.3, Red FM 93.5, Big FM 92.7, AIR FM Gold/Rainbow/Vividh Bharati, Fever 104, Ishq 104.8, Radio One 94.3, Nasha 91.9, Magic 106.4", "zone": "north edge Zone A / Zone B", "carries": ["bambaiya-fm", "gully-indie", "hale-gaani", "hustle-fm", "bambai-traffic-radio", "bambai-after-dark"], "mapRole": "master skyline landmark + navigation beacon; tower service rooms = evidence/interior spaces" },
+    { "id": "koliwada-community-mast", "name": "Koliwada Community Mast", "realReferent": "Chembur college transmitter (90.0 Acharya FM pattern)", "zone": "Zone D harbour", "carries": ["koliwada-community-station"], "mapRole": "low-power community station; harbour-community voice; pirate-broadcast site after The Burning Press (Ch9)" },
+    { "id": "bandar-west-mast", "name": "Bandar West Union Park Mast", "realReferent": "Khar West Union Park transmitter (90.8 Jago Mumbai pattern)", "zone": "Zone C western line", "carries": ["indie-boutique-station"], "mapRole": "money-neighbourhood coverage; shell-company arc signal" },
+    { "id": "kalyan-campus-mast", "name": "Kalyan Campus Mast", "realReferent": "Mumbai University Kalyan campus transmitter (107.8 pattern)", "zone": "Zone E thane-kalyan", "carries": ["campus-station"], "mapRole": "far-suburb station; the contamination story leaks here (Ch12-14)" },
+    { "id": "malad-transmitter-site", "name": "Malad Transmitter Site", "realReferent": "AIR high-power MW transmitter (1044 kHz DRM)", "zone": "Zone C far north", "carries": ["mw-service"], "mapRole": "night long-wave; 'the signal that reaches the whole coast'" }
+  ],
+  "bulletinHooks": {
+    "act1": "First reports of the Salvi case; 'developer's consultant found dead' framing; peg-truck item after Ch6.",
+    "act2": "Case-withdrawal coverage (Ch10); Leela's shop fire (Ch9) — stations go quiet, then the Koliwada mast goes pirate.",
+    "act3": "Stay-order coverage (Ch11); contamination briefs leak via the Kalyan campus mast.",
+    "act4": "Internal-affairs leaks; Vinyl Night citywide finale on the Mother Tower."
+  },
+  "discoveryActivity": "Visiting a mast site unlocks its station lore + district traffic-report coverage (bible §13 'Radio station discovery')."
+}

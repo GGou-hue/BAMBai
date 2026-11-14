@@ -1,0 +1,44 @@
+{
+  "sceneId": "ch1-the-file",
+  "title": "Crime Branch — “The File”",
+  "chapter": 1,
+  "location": "Crime Branch office, South Mumbai",
+  "time": "07:25 AM",
+  "playerControl": "limited",
+  "protagonists": ["aarav", "naina"],
+  "visualDirection": [
+    "fluorescent tubes, one flickering",
+    "old metal filing cabinets",
+    "wall clock 4 minutes slow",
+    "constable typing at a desktop",
+    "two officers arguing quietly near the photocopier",
+    "ceiling fan with a slight wobble",
+    "half-finished cutting chai on a stack of files",
+    "rainwater dripping from a constable's umbrella near the entrance",
+    "police wireless set at low volume"
+  ],
+  "lines": [
+    { "lineId": "ch1-file-pradhan-01", "speakerId": "pradhan", "textOriginal": "Deshmukh. Tumhare liye ek chhota sa case hai.", "textTranslation": "Deshmukh. I've got a small case for you.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "controlled", "cameraCue": "pradhan-cabin-medium", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-aarav-01", "speakerId": "aarav", "textOriginal": "Chhota case subah saat baje nahi milta, sir.", "textTranslation": "Small cases don't arrive at seven in the morning, sir.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "dry", "cameraCue": "aarav-medium", "branchCondition": null, "characterVariant": "aarav" },
+    { "lineId": "ch1-file-pradhan-02", "speakerId": "pradhan", "textOriginal": "Contractor mara hai. Fort mein. Builder lobby already phone kar rahi hai.", "textTranslation": "A contractor is dead. In Fort. The builder lobby is already calling.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "controlled", "cameraCue": "pradhan-cabin-medium", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-naina-01", "speakerId": "naina", "textOriginal": "Sir, CCTV overwrite hua hai. Watchman missing hai. Phone missing hai.", "textTranslation": "Sir, the CCTV was overwritten. The watchman is missing. The phone is missing.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "precise", "cameraCue": "naina-medium", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-pradhan-03", "speakerId": "pradhan", "textOriginal": "Teen cheezein missing. Body mil gayi. Kam se kam ek cheez toh sahi jagah hai.", "textTranslation": "Three things are missing. At least the body was found in the right place.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "dry", "cameraCue": "pradhan-cabin-medium", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-aarav-02", "speakerId": "aarav", "textOriginal": "Naam?", "textTranslation": "Name?", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "neutral", "cameraCue": "aarav-medium", "branchCondition": null, "characterVariant": "aarav" },
+    { "lineId": "ch1-file-pradhan-04", "speakerId": "pradhan", "textOriginal": "Vikram Salvi. Developer ka consultant. Aur Deshmukh…", "textTranslation": "Vikram Salvi. A developer's consultant. And Deshmukh…", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "controlled", "cameraCue": "pradhan-cabin-medium", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-aarav-03", "speakerId": "aarav", "textOriginal": "Ji?", "textTranslation": "Yes?", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "neutral", "cameraCue": "aarav-medium", "branchCondition": null, "characterVariant": "aarav" },
+    { "lineId": "ch1-file-pradhan-05", "speakerId": "pradhan", "textOriginal": "Is baar file seedhi rakhna. Bahut log dekh rahe hain.", "textTranslation": "Keep the file straight this time. A lot of people are watching.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "menacing-paternal", "cameraCue": "pradhan-close", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-aarav-04", "speakerId": "aarav", "textOriginal": "Sir, file seedhi rahegi. Log tedhe nikle toh?", "textTranslation": "The file will stay straight, sir. What if the people don't?", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "dry", "cameraCue": "aarav-close", "branchCondition": null, "characterVariant": "aarav" },
+    { "lineId": "ch1-file-pradhan-06", "speakerId": "pradhan", "textOriginal": "Phir dekh lenge.", "textTranslation": "Then we'll deal with it.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "controlled", "cameraCue": "pradhan-close", "branchCondition": null, "characterVariant": null },
+    { "lineId": "ch1-file-naina-02", "speakerId": "naina", "textOriginal": "Sir, aapko bhi laga?", "textTranslation": "Sir, did you notice it too?", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "quiet", "cameraCue": "naina-medium", "branchCondition": "pradhan-left", "characterVariant": null },
+    { "lineId": "ch1-file-aarav-05", "speakerId": "aarav", "textOriginal": "Kya?", "textTranslation": "What?", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "neutral", "cameraCue": "aarav-medium", "branchCondition": "pradhan-left", "characterVariant": "aarav" },
+    { "lineId": "ch1-file-naina-03", "speakerId": "naina", "textOriginal": "Unhone pehle hi bol diya ki log dekh rahe hain. Case abhi khula bhi nahi.", "textTranslation": "He already said people are watching. The case hasn't even opened.", "language": "hinglish", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "sharp", "cameraCue": "naina-medium", "branchCondition": "pradhan-left", "characterVariant": null },
+    { "lineId": "ch1-file-aarav-06", "speakerId": "aarav", "textOriginal": "Welcome to Crime Branch.", "textTranslation": "Welcome to Crime Branch.", "language": "en", "voiceAsset": null, "duration": null, "subtitleTiming": null, "emotion": "dry", "cameraCue": "aarav-medium", "branchCondition": "pradhan-left", "characterVariant": "aarav" }
+  ],
+  "handoff": {
+    "missionId": "body-at-backbay",
+    "missionTitle": "MISSION 01 — THE BODY AT BACKBAY",
+    "objective": "Reach the crime scene.",
+    "optional": "Review Salvi's profile before departure.",
+    "radio": "Unit 14, traffic heavy near Crawford Market. Use the Fort approach if clear."
+  }
+}

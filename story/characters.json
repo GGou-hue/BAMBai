@@ -1,0 +1,104 @@
+{
+  "$schema": "./schema/characters.schema.md",
+  "protagonists": [
+    {
+      "id": "aarav",
+      "name": "Inspector Aarav Deshmukh",
+      "gender": "male",
+      "age": 37,
+      "role": "Senior Police Inspector, Crime Branch — Organised Crime & Special Investigations Unit",
+      "home": "Eastern suburbs, Bambai",
+      "family": { "wife": "ananya", "daughter": "ira" },
+      "personality": "Observant, controlled, dry humour, stubborn, emotionally guarded",
+      "backstory": "Lower-middle-class Maharashtrian household; father worked in the municipal records office. Early-career witness-protection leak got informant Sameer Koli killed; Aarav signed a softened report — his first major compromise. Known for solving hard cases; keeps information to himself.",
+      "wound": "Fears trusting the wrong colleague again more than he fears criminals.",
+      "arc": "Starts believing the institution is damaged but repairable; discovers the same chain of command exposed a witness; final test is trusting another person with the truth.",
+      "assignedBy": "ACP Devendra Pradhan, paired with SI Naina Jagtap",
+      "gameplay": ["crime-scene examination and evidence handling", "interviews, interrogation, warrants", "police resources and case database", "tactical entries and coordinated raids", "official vehicle access and radio dispatch", "strongest institutional records access; weakest street access without informants"],
+      "signatureDialogue": [
+        { "hi": "Mujhe kahaani nahi chahiye. Mujhe woh hissa chahiye jo tum chhupa rahe ho.", "en": "I don't need the story. I need the part you're hiding." },
+        { "hi": "Har jhooth pakadna zaroori nahi. Kabhi kabhi dekhna padta hai, jhooth bol kaun raha hai.", "en": "You don't have to catch every lie. Sometimes you have to notice who's telling it." }
+      ],
+      "prologue": { "id": "call-time", "title": "Call Time", "beats": ["drive to Fort in a police vehicle", "secure the crime scene", "speak to Naina and a watchman", "learn evidence collection and first deductions", "end with the audio clue to Leela"], "openingVO": { "hi": "Case file mein sab kuch likha hota hai. Bas yeh nahi likha hota ki kisne kya mitaaya.", "en": "Everything is written in a case file. Except who erased what." } },
+      "endingSting": "File band karo."
+    },
+    {
+      "id": "arjun",
+      "name": "Arjun Pawar",
+      "gender": "male",
+      "age": 29,
+      "role": "Delivery rider, occasional courier for cash-strapped local businesses",
+      "home": "Shared rented room near the Central Line",
+      "family": { "father": "veer" },
+      "personality": "Alert, fast-talking when nervous, street-smart, loyal, sometimes reckless",
+      "backstory": "Came to Bambai from a small town after his father Veer Pawar's medical debt ruined the family. Veer was a local reporter whose story on illegal dumping and land acquisition disappeared before publication. Arjun learned the city through delivery routes; one night he delivered a sealed envelope to a redevelopment contractor who was dead the next morning.",
+      "wound": "Resents his father's obsession with truth, but is repeating the same pattern.",
+      "arc": "Survivor who wants to stay invisible ends by choosing: remain a useful ghost, become a witness, or use his knowledge to control the streets.",
+      "gameplay": ["best vehicle handling and route shortcuts", "bike weaving, alley escapes, delivery-timer pressure", "street contacts, garages, informal safe houses", "stealth through service corridors and delivery access", "improvised tools and distraction tactics", "weakest police-records access; recognisable by local NPCs and rival couriers"],
+      "signatureDialogue": [
+        { "hi": "Police ko route chahiye. Mujhe bas yeh pata hai ki kaunsa raasta band hone se pehle nikalna hai.", "en": "The police need a route. I just know which road to take before it gets blocked." },
+        { "hi": "Main parcel deta hoon, sawaal nahi. Par kuch parcels wapas aa jaate hain… aadmi ke saath.", "en": "I deliver parcels, not questions. But some parcels come back… with a person attached." }
+      ],
+      "prologue": { "id": "last-delivery", "title": "Last Delivery", "beats": ["accept a late-night delivery", "navigate congested roads and narrow gullies", "follow a customer instruction that changes mid-route", "discover a dropped envelope and a suspicious vehicle", "escape a pursuit without knowing why he is being chased"], "openingVO": { "hi": "Bambai mein route yaad rakhna padta hai. Log yaad rakhne layak nahi hote… aisa socha tha.", "en": "In Bambai, you remember the routes. You don't remember the people… or so I thought." } },
+      "endingSting": "Route ab mera hai."
+    },
+    {
+      "id": "naina",
+      "name": "SI Naina Jagtap",
+      "gender": "female",
+      "age": 32,
+      "role": "Police Sub-Inspector, Crime Branch",
+      "home": "Thane",
+      "family": { "mother": "schoolteacher", "father": "state transport system" },
+      "personality": "Direct, disciplined, sharp, digitally fluent, quietly empathetic, impatient with institutional theatre",
+      "backstory": "First in her family to join the police. During a cyber-fraud case she found a seized phone accessed before it was logged into evidence — from an authorised terminal. Her complaint was reframed as a chain-of-custody error and she was transferred off the case.",
+      "wound": "Fears becoming the officer who knows the truth but keeps quiet for the next promotion.",
+      "arc": "Procedural officer who believes the right record protects people ends by learning procedure only matters when someone defends it; paths to whistleblowing, controlled compromise, or a parallel evidence chain.",
+      "assignedBy": "Partner to Aarav; her evidence-tampering case may connect to his old witness leak",
+      "gameplay": ["digital forensics, phone metadata, CCTV reconstruction", "evidence chain-of-custody and document comparison", "surveillance cameras, access logs, police database workflows", "more warrant options and admissible-case building", "better coordinated-operation planning", "weaker high-speed street driving; police identity can trigger internal scrutiny"],
+      "signatureDialogue": [
+        { "hi": "Sir, intuition se direction milta hai. Court mein proof lagta hai.", "en": "Sir, intuition gives us a direction. Court needs proof." },
+        { "hi": "System ko hack karna aasaan hai. System ko yeh samjhana mushkil hai ki usne galat kiya.", "en": "Hacking the system is easy. Convincing it that it was wrong is harder." }
+      ],
+      "prologue": { "id": "evidence-room", "title": "Evidence Room", "beats": ["log a phone into evidence", "reconstruct a CCTV timeline", "discover an unauthorised but authorised-looking access event", "decide whether to flag it immediately or preserve a copy first", "receive the Salvi case assignment"], "openingVO": { "hi": "Main sochti thi record jhooth nahi bolta. Phir maine dekha, record likhta kaun hai.", "en": "I thought records couldn't lie. Then I learned who gets to write them." } },
+      "endingSting": "Access authorised."
+    },
+    {
+      "id": "meera",
+      "name": "Meera “Meenu” Naik",
+      "gender": "female",
+      "age": 34,
+      "role": "Harbour operator; former BEST ticket inspector; informal logistics coordinator",
+      "home": "Koliwada near the harbour",
+      "personality": "Practical, watchful, proud, warm with her own people, dangerous when cornered",
+      "backstory": "Harbour family for generations; joined BEST as a ticket inspector for stability, left after a family dispute and a failed attempt to secure a traditional landing point. Now coordinates small boat transfers, repairs and cargo — some informal, some not. Once moved a sealed drum for a contractor; weeks later fish died near a stretch of the creek.",
+      "wound": "Years of compromises to protect her community; fears the truth will destroy the people she is saving.",
+      "arc": "Believes survival requires silence; ends by choosing between exposing the harbour network, a private bargain, or taking the routes herself.",
+      "gameplay": ["boat handling and water-based pursuits", "harbour navigation, cargo inspection, manifest reading", "Koli community relationships and shoreline access", "undercover social access through logistics contacts", "vessel types, harbour routines, cargo irregularities", "limited police-evidence access; tide, weather and shallow water affect handling"],
+      "signatureDialogue": [
+        { "hi": "Samundar sab kuch rakhta hai. Bas har cheez wapas nahi karta.", "en": "The sea keeps everything. It just doesn't return everything." },
+        { "hi": "Tum log map dekhte ho. Hum log paani ka mood dekhte hain.", "en": "You people read maps. We read the mood of the water." }
+      ],
+      "prologue": { "id": "low-tide", "title": "Low Tide", "beats": ["move a small boat between moorings", "inspect a cargo drum", "talk to a boatman who refuses to explain the shipment", "spot a survey mark on a concrete pillar", "discover the same mark in a photograph connected to Salvi"], "openingVO": { "hi": "Paani ke upar sab kuch chalta rehta hai. Neeche kya pada hai, koi poochta nahi.", "en": "Everything keeps moving on the water. No one asks what is lying beneath it." } },
+      "endingSting": "Paani yaad rakhega."
+    }
+  ],
+  "npcs": [
+    { "id": "leela", "name": "Leela", "inBuild": true, "role": "Xerox-shop keeper; keeper of copies and records", "voice": "economical, perceptive" },
+    { "id": "kavya", "name": "Kavya", "inBuild": true, "role": "Meridian Times journalist", "voice": "sharp, impatient, idealistic" },
+    { "id": "putta", "name": "Putta", "inBuild": true, "role": "Local fixer", "voice": "casual menace, self-justification" },
+    { "id": "shobha", "name": "Shobha Aunty", "inBuild": true, "role": "PG owner; community figure", "voice": "existing build voice" },
+    { "id": "meeraNpc", "name": "Meera (as NPC)", "inBuild": true, "role": "playable in own route; NPC ally in others", "voice": "practical, harbour-specific, grounded" },
+    { "id": "pradhan", "name": "ACP Devendra Pradhan", "inBuild": false, "role": "Aarav's commanding officer; institutional betrayer who believes he prevented a collapse", "voice": "controlled, paternal, institutional" },
+    { "id": "farah", "name": "Dr Farah Contractor", "inBuild": false, "role": "Forensic specialist", "voice": "clinical, exact, never overclaims" },
+    { "id": "baiFiroz", "name": "Bai Firoz", "inBuild": false, "role": "Harbour matriarch; negotiated system of favours and fear", "voice": "warm hospitality with threat underneath" },
+    { "id": "shetty", "name": "Shetty", "inBuild": true, "role": "Business-as-intimidation figure", "voice": "business language as intimidation" },
+    { "id": "kb", "name": "KB", "inBuild": true, "role": "Betting-network operator; sister's transplant fund frozen in Ch9", "voice": "existing build voice" },
+    { "id": "salvi", "name": "Vikram Salvi", "inBuild": false, "role": "Victim; developer's consultant who built the fake survey trail, then collected proof of the creek contamination", "voice": "n/a (victim)" },
+    { "id": "sameerKoli", "name": "Sameer Koli", "inBuild": false, "role": "Aarav's dead witness — the wound behind his arc", "voice": "n/a (backstory)" },
+    { "id": "veer", "name": "Veer Pawar", "inBuild": true, "role": "Arjun's father; reporter whose story vanished", "voice": "existing build voice" },
+    { "id": "ananya", "name": "Ananya Deshmukh", "inBuild": false, "role": "Aarav's wife", "voice": "weary, clear-eyed" },
+    { "id": "ira", "name": "Ira Deshmukh", "inBuild": false, "role": "Aarav's daughter, 9", "voice": "child, direct" }
+  ],
+  "castNote": "Existing cast.js ids preserved: arjun, kavya, nikhil, mani, leela, shobha, colonel, ramanna, putta, police, broker, chirag, kabir, gopal, goon, goon2, meera. New ids here must be added to cast.js in S2+."
+}

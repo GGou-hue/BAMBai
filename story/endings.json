@@ -1,0 +1,54 @@
+{
+  "$schema": "Four endings (bible §14). Hidden variables are tracked but never shown as obvious morality bars.",
+  "hiddenVariables": ["evidenceIntegrity", "publicTrust", "institutionalLoyalty", "personalCompromise", "relationshipTrust (per character)"],
+  "endings": [
+    {
+      "id": "the-paper",
+      "title": "The Paper",
+      "path": "High evidence integrity + high public trust",
+      "world": "Evidence reaches court and the public. Rakshas Group's local operation collapses, but some powerful people escape. Leela's shop reopens as BAMBAI PRINTS. Kavya publishes the investigation. The creek's access is protected pending a public inquiry. Main characters survive, but their lives are changed.",
+      "versions": {
+        "aarav": "Transferred out of Crime Branch. Family safe; career effectively over.",
+        "arjun": "Becomes a public witness. Loses the anonymity that kept him safe but no longer needs to run.",
+        "naina": "Becomes the key whistleblower and testifies. May lose her position but establishes the evidence chain.",
+        "meera": "Gives the harbour records to the public inquiry. Community retains access; she must rebuild trust after years of silence."
+      }
+    },
+    {
+      "id": "the-badge",
+      "title": "The Badge",
+      "path": "High institutional loyalty + moderate evidence integrity",
+      "world": "The department removes visible criminals while protecting itself from a full public reckoning.",
+      "versions": {
+        "aarav": "Promoted, but Naina no longer trusts him.",
+        "arjun": "Receives protection and a clean record, but his father's story remains buried.",
+        "naina": "Stays in the department with a senior role, but knows the official report is incomplete.",
+        "meera": "Receives a formal harbour agreement for selected families, while other families are displaced."
+      }
+    },
+    {
+      "id": "the-empire",
+      "title": "The Empire",
+      "path": "High personal compromise + high criminal leverage",
+      "world": "The protagonist takes control of the criminal infrastructure and replaces Rakshas leadership.",
+      "versions": {
+        "aarav": "Uses police access and criminal intelligence to become the invisible controller.",
+        "arjun": "Uses the courier network to control information, routes and favours.",
+        "naina": "Builds an off-book intelligence network, telling herself it is safer than the official one.",
+        "meera": "Controls the harbour routes and decides which cargo moves and which does not."
+      }
+    },
+    {
+      "id": "the-rakshasa",
+      "title": "The Rakshasa",
+      "path": "Secret: very high personal compromise, low public trust, critical evidence concealed or destroyed",
+      "world": "The protagonist blackmails the remaining power brokers. The city appears calm. The full truth never becomes public. Final image: a new survey peg is driven into the ground; the person holding the clipboard is connected to the protagonist.",
+      "versions": {
+        "aarav": "\"File band karo.\"",
+        "arjun": "\"Route ab mera hai.\"",
+        "naina": "\"Access authorised.\"",
+        "meera": "\"Paani yaad rakhega.\""
+      }
+    }
+  ]
+}

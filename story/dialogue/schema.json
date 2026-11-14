@@ -1,0 +1,27 @@
+{
+  "$schema": "Dialogue line schema (bible §16.7). Every line external to scene logic; scenes select lines by protagonist via characterVariant and branchCondition.",
+  "lineFields": {
+    "lineId": "unique string, e.g. ch1-file-pradhan-01",
+    "speakerId": "id from story/characters.json",
+    "textOriginal": "spoken line (Hinglish/Hindi/Marathi/English as written)",
+    "textTranslation": "English subtitle",
+    "language": "hi | en | mr | hinglish",
+    "voiceAsset": "audio/ path or null (browser TTS fallback)",
+    "duration": "seconds (number | null)",
+    "subtitleTiming": "{start, end} relative to scene start | null",
+    "emotion": "neutral | dry | tense | warm | clinical | menacing | weary | sharp",
+    "cameraCue": "shot id | null",
+    "branchCondition": "expression over run state | null",
+    "characterVariant": "protagonist id this line variant belongs to | null (shared)"
+  },
+  "sceneFields": {
+    "sceneId": "unique string",
+    "title": "scene title",
+    "chapter": "number",
+    "location": "string",
+    "time": "string",
+    "playerControl": "locked | limited | free",
+    "visualDirection": "[strings]",
+    "handoff": "{ missionId, objective, optional, radio } | null"
+  }
+}
