@@ -222,9 +222,10 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
 - BEST double-decker: new `decker` vehicle kind (procedural builder wrapping bus builder
   `_t`; upper deck, window rows, roof slab, upper LED). Registered in vehicles/police/game
   (+ mirrors). Verified: decker 4.22 m vs bus 3.31 m tall; renders with upper deck.
-- Rename sweep leftovers found and fixed in npc.js: cop-radio lines said Koramangala/
-  Hosur Rd/Eighty Feet Rd/lake; whitefield chatter said Marathahalli/Hebbal; goon line
-  "The lake is ours!". All swept to Bambai/Mumbai equivalents (see session-5 fix commit).
+- Rename sweep leftovers FOUND in npc.js (fix pending VO decision): cop-radio lines say
+  Koramangala/Hosur Rd/Eighty Feet Rd/lake; whitefield chatter says Marathahalli/Hebbal;
+  goon line "The lake is ours!". The matching WAVs (radio-1..10, whitefield-1..4, goon-11)
+  speak these same old lines, so a text-only fix desyncs subtitle from audio.
 - VO AUDIT (full, replaces the "249 WAVs" guess): most NPC dialogue is runtime TTS
   (speakify hooks hud.say only; story dialogue is browser TTS). Street chatter/shouts are
   pre-recorded WAVs gated by D.canPlay - NO TTS fallback. WAVs were recorded from the
