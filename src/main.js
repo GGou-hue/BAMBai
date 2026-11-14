@@ -94,6 +94,12 @@ if (params.get('view') === 'audio') {
   for (const id of ['controls', 'hud', 'hour-wrap']) document.getElementById(id)?.remove(); // debug overlay is city-view only
   await startGame(r, params);
   window.__game = Game.I; // debug handle for the test harness
+  if (window.__who || params.get('story') === '1') {
+    // S3: attach the story-state layer (mission graph, hidden variables, evidence)
+    import('../vendor/story-state.js').then(({ default: storyState }) => {
+      window.__storyState = storyState.attach(Game.I, window.__who);
+    }).catch((e) => console.log('[storyState] attach error:', e?.message || e));
+  }
   if (window.__who) showPrologue().catch((e) => console.log('[story] prologue error:', e?.message || e));
   hinglishify(Game.I); // dialogue speaks Hinglish now
   speakify(Game.I); // and the characters actually speak it
