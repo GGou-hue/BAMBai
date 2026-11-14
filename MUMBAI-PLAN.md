@@ -211,3 +211,26 @@ Vidhan Bhavan, RBI tower, Sassoon Docks, Haji Ali dargah, Marine Drive curve.
   Mumbai equivalents; rival -> PUNERI MASALA.
 - Known risk: street-VO audio may still say Kannada/Bangalore words (249 WAVs, standing open
   decision). darshini engine kind name kept (label already says Irani Darshini).
+
+## Progress log (session 5) - commit 99fed31 + follow-ups
+- Phase 5 visual identity DONE. Skyline panoramas: 3 generated Mumbai-style sources
+  (art-deco curve, domed station, palms; magenta-keyed sky) -> chroma-key -> tile to
+  2048x504 -> 48px alpha edge fade -> art/sky/SKY-DAY/DUSK/NIGHT-01.png, registered under
+  existing SKY-* keys in art/index.json (zero engine changes). Real bug fixed: generated
+  "magenta" was actually pink (227,45,110); hue-based key (r-g>60 && b-g>15) now used.
+  Day panorama later boosted (saturation 1.45 in process-sky.ps1) to survive 70% fog wash.
+- BEST double-decker: new `decker` vehicle kind (procedural builder wrapping bus builder
+  `_t`; upper deck, window rows, roof slab, upper LED). Registered in vehicles/police/game
+  (+ mirrors). Verified: decker 4.22 m vs bus 3.31 m tall; renders with upper deck.
+- Rename sweep leftovers found and fixed in npc.js: cop-radio lines said Koramangala/
+  Hosur Rd/Eighty Feet Rd/lake; whitefield chatter said Marathahalli/Hebbal; goon line
+  "The lake is ours!". All swept to Bambai/Mumbai equivalents (see session-5 fix commit).
+- VO AUDIT (full, replaces the "249 WAVs" guess): most NPC dialogue is runtime TTS
+  (speakify hooks hud.say only; story dialogue is browser TTS). Street chatter/shouts are
+  pre-recorded WAVs gated by D.canPlay - NO TTS fallback. WAVs were recorded from the
+  pre-sweep text, so WAV audio and swept subtitles can disagree. Certain-stale groups:
+  radio-1..10 (cop radio), whitefield-1..4, ident-kempu/hale/silkboard (11), rj-kempu/*,
+  rj-silkboard/*, rj-hale-oldcity/coffee (7), ad-sites, darshini-1..4, nimsha-1..3,
+  lakecough-1..2 (~42 certain). Likely-stale (unverifiable without listening): vendor-1..13,
+  street-shout-1..13, delhi-1..9, pairs-1..4a/b, fan-1..6, rj-gully/hustle/all-news (~60).
+  Decision pending: leave as-is / text-only fix / TTS re-record (Windows SAPI possible).

@@ -31,7 +31,7 @@ public static class SkyProc {
         return outB;
     }
 
-    public static Bitmap Compose(Bitmap keyed, int targetW, int targetH, int fade) {
+    public static Bitmap Compose(Bitmap keyed, int targetW, int targetH, int fade, double sat) {
         int W = keyed.Width, H = keyed.Height;
         int top = -1;
         for (int y=0; y<H && top<0; y++)
@@ -69,21 +69,38 @@ public static class SkyProc {
         }
         System.Runtime.InteropServices.Marshal.Copy(buf, 0, dd.Scan0, buf.Length);
         canvas.UnlockBits(dd);
-        return canvas;
+        if (sat <= 1.0) return canvas;
+        // saturation boost so the skyline survives the distance fog
+        Bitmap outB = new Bitmap(targetW, targetH, PixelFormat.Format32bppArgb);
+        using (Graphics gr = Graphics.FromImage(outB)) {
+            gr.CompositingMode = CompositingMode.SourceCopy;
+            double lw = 0.3086, lg = 0.6094, lb = 0.0820;
+            var cm = new ColorMatrix(new float[][]{
+                new float[]{(float)(lw*(1-sat)+sat), (float)(lw*(1-sat)), (float)(lw*(1-sat)), 0, 0},
+                new float[]{(float)(lg*(1-sat)), (float)(lg*(1-sat)+sat), (float)(lg*(1-sat)), 0, 0},
+                new float[]{(float)(lb*(1-sat)), (float)(lb*(1-sat)), (float)(lb*(1-sat)+sat), 0, 0},
+                new float[]{0,0,0,1,0},
+                new float[]{0,0,0,0,1}});
+            var ia = new ImageAttributes();
+            ia.SetColorMatrix(cm);
+            gr.DrawImage(canvas, new Rectangle(0,0,targetW,targetH), 0,0,targetW,targetH, GraphicsUnit.Pixel, ia);
+        }
+        canvas.Dispose();
+        return outB;
     }
 }
 "@
 
-function Convert-Sky($srcPath, $outPath) {
+function Convert-Sky($srcPath, $outPath, $sat = 1.0) {
   $src = [System.Drawing.Image]::FromFile($srcPath)
   $keyed = [SkyProc]::Key([System.Drawing.Bitmap]$src)
   $src.Dispose()
-  $canvas = [SkyProc]::Compose($keyed, 2048, 504, 48)
+  $canvas = [SkyProc]::Compose($keyed, 2048, 504, 48, $sat)
   $keyed.Dispose()
   $canvas.Save($outPath, [System.Drawing.Imaging.ImageFormat]::Png)
   $canvas.Dispose()
   Write-Host "saved $outPath"
 }
-Convert-Sky (Resolve-Path "images/sky-day-src-e7e422.jpg") "C:\Users\User4\Downloads\BAMBai\art\sky\SKY-DAY-01.png"
+Convert-Sky (Resolve-Path "images/sky-day-src-e7e422.jpg") "C:\Users\User4\Downloads\BAMBai\art\sky\SKY-DAY-01.png" 1.45
 Convert-Sky (Resolve-Path "images/sky-dusk-src-b1dd42.jpg") "C:\Users\User4\Downloads\BAMBai\art\sky\SKY-DUSK-01.png"
 Convert-Sky (Resolve-Path "images/sky-night-src-6ca8b5.jpg") "C:\Users\User4\Downloads\BAMBai\art\sky\SKY-NIGHT-01.png"
