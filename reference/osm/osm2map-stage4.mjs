@@ -154,6 +154,8 @@ const U = {
   sparkwerk: { lat: 18.93450, lon: 72.83640, road: `P D Mello Road`, src: `Fort east campus (approx)` },
   vanijya: { lat: 18.94030, lon: 72.83510, road: `Mahapalika Marg`, src: `BMC HQ (approx)` },
   rakshasHouse: { lat: 18.93100, lon: 72.83830, road: `P D Mello Road`, src: `Fort east office (approx)` },
+  fmTowerMother: { lat: 18.94400, lon: 72.82300, road: `Marine Lines Flyover`, src: `Varli Prasarayan Tower (Worli TV lattice, map north edge)` },
+  fmTowerKoliwada: { lat: 18.94200, lon: 72.83800, road: `P D Mello Road`, src: `Koliwada community mast (harbour edge)` },
   santhe: { lat: 18.93920, lon: 72.83300, road: `Crawford Market Road`, src: `Crawford Market (approx)` },
   pustaka: { lat: 18.92600, lon: 72.83120, road: `Karmaveer Bhaurao Patil Road`, src: `Colaba brewhouse (approx)` },
   oho: { lat: 18.92440, lon: 72.82940, road: `2nd Marine Street`, src: `Colaba venue (approx)` },
@@ -330,6 +332,8 @@ const Z_ENTRIES = [
   [`samaja`, `J(\`samaja\`,U.samaja,26,18)`],
   [`covalent`, `J(\`covalent\`,U.covalent,30,20)`],
   [`bijliWorld`, `J(\`bijliWorld\`,U.bijliSignal,30,24,2,0)`],
+  [`fmTowerMother`, `J(\`fmTowerMother\`,U.fmTowerMother,16,16,3,0)`],
+  [`fmTowerKoliwada`, `J(\`fmTowerKoliwada\`,U.fmTowerKoliwada,10,10,2,0)`],
 ];
 const Z_TXT = `var Z={` + Z_ENTRIES.map(([k, v]) => `${k}:${v}`).join(`,`) + `};`;
 
@@ -351,7 +355,7 @@ const VT_TXT = `vt={
   },foodStreet:Q(Z.foodStreet,\`Kolvada food street\`,0),busStop:ht(U.busStop,\`Bus stop, Rangmahal Road\`,1.6),mallBusStop:ht(U.mallBusStop,\`Bus stop, Junction Square\`,1.6),teaStall:ht(U.teaStall,\`Tea stall\`,1.4),babusBar:(()=>{
     let e=Z.babusBar,[t,n]=H(U.babusBar);
     return Q(e,\`Babu's Bar\`,+((t-e.x)*Math.cos(e.ry)-(n-e.z)*Math.sin(e.ry)).toFixed(1))
-  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),rakshasHouse:Q(Z.rakshasHouse,\`Rakshas House\`),santhe:Q(Z.santhe,\`Mota Bazaar\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
+  })(),syrup:Q(Z.syrup,\`Syrup\`),bijliSignal:_t(U.bijliSignal,\`\`),bijliWorld:Q(Z.bijliWorld,\`Bijli World Signal\`),stadium:Q(Z.stadium,\`Aata Mantapa Indoor Stadium\`),deepaNivas:Q(Z.deepaNivas,\`Deepa Nivas College\`),sparkwerk:Q(Z.sparkwerk,\`SparkWerk Campus\`),vanijya:Q(Z.vanijya,\`Bambai Vanijya Sankeerna\`),rakshasHouse:Q(Z.rakshasHouse,\`Rakshas House\`),fmTowerMother:Q(Z.fmTowerMother,\`Varli Prasarayan Tower\`),fmTowerKoliwada:Q(Z.fmTowerKoliwada,\`Koliwada Community Mast\`),santhe:Q(Z.santhe,\`Mota Bazaar\`),oho:Q(Z.oho,\`\`),karadi:Q(Z.karadi,\`\`),samaja:Q(Z.samaja,\`\`),covalent:Q(Z.covalent,\`\`),...Object.fromEntries(v.map(e=>[e.kind,Q(Z[e.kind],e.label)]))
 },yt=`;
 
 // ---- 5. splice ----

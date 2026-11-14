@@ -2,6 +2,7 @@
   "$schema": "Radio identity (bible §15) + the Radio Tower Network. Stations marked inBuild:true exist in vendor/audio.js today. Towers are fictionalized from real Mumbai transmitter sites (S0 grounding: worldradiomap.com/in/mumbai — the 300m Worli Doordarshan lattice tower carries nearly the whole commercial FM dial; community stations transmit from their own neighborhood masts).",
   "stations": [
     { "id": "bambaiya-fm", "name": "Bambaiya FM", "inBuild": true, "flavor": "city mainstream; carries the case's news bulletins" },
+    { "id": "koliwada-community-station", "name": "Koliwada Community Radio", "inBuild": false, "flavor": "harbour community voice from the Koliwada mast; goes pirate after The Burning Press (Ch9)" },
     { "id": "gully-indie", "name": "Gully Indie", "inBuild": true, "flavor": "street music and youth culture" },
     { "id": "hale-gaani", "name": "Hale Gaani", "inBuild": true, "flavor": "old songs, memory and grief" },
     { "id": "hustle-fm", "name": "Hustle FM", "inBuild": true, "flavor": "work, money, hustle culture" },

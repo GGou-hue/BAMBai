@@ -1,0 +1,61 @@
+{
+  "$schema": "Act I radio news bulletins (S1 data). Broadcast from the Varli Prasarayan Tower 'Mother Tower'. Played at chapter transitions once the S3 radio integration lands; each bulletin is a queue of VO line ids consumable by the ./vo/ system.",
+  "act": "act1",
+  "bulletins": [
+    {
+      "id": "bulletin-ch1-body-found",
+      "chapter": 1,
+      "station": "bambai-traffic-radio",
+      "tone": "matter-of-fact, traffic-report cadence",
+      "headline": "Body found at a Backbay reclamation site",
+      "lines": [
+        { "lineId": "bulletin-ch1-01", "speakerId": "trafficRadioAnchor", "textOriginal": "Traffic update. Backbay Road half closed — police activity near the reclamation site.", "textTranslation": "Traffic update. Backbay Road is half closed — police activity near the reclamation site.", "language": "en" },
+        { "lineId": "bulletin-ch1-02", "speakerId": "trafficRadioAnchor", "textOriginal": "Avoid the sea face if you can. And no — it is not a film shoot.", "textTranslation": "Avoid the sea face if you can. And no — it is not a film shoot.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch2-watchman",
+      "chapter": 2,
+      "station": "bambaiya-fm",
+      "tone": "DJ forced-cheerful, reading a news insert he doesn't want to read",
+      "headline": "Missing watchman found in the creek",
+      "lines": [
+        { "lineId": "bulletin-ch2-01", "speakerId": "bambaiyaDj", "textOriginal": "Ek chhota sa news, sun lo aur bhool jao — Retibandar creek mein ek watchman mila.", "textTranslation": "One small news item, hear it and forget it — a watchman was found in the Retibandar creek.", "language": "hinglish" },
+        { "lineId": "bulletin-ch2-02", "speakerId": "bambaiyaDj", "textOriginal": "Police keh rahi hai drowning. Watchman ke pocket mein phone nahi tha. Ab gaana suno.", "textTranslation": "Police say drowning. The watchman's pockets had no phone. Now, some music.", "language": "hinglish" }
+      ]
+    },
+    {
+      "id": "bulletin-ch3-salvi-file",
+      "chapter": 3,
+      "station": "hustle-fm",
+      "tone": "business-news clipped, nervous",
+      "headline": "Developer consultant Salvi's files go missing",
+      "lines": [
+        { "lineId": "bulletin-ch3-01", "speakerId": "hustleAnchor", "textOriginal": "Markets flat, but Fort is not: a consultant's office in the Fort was emptied overnight.", "textTranslation": "Markets are flat, but the Fort is not: a consultant's Fort office was emptied overnight.", "language": "en" },
+        { "lineId": "bulletin-ch3-02", "speakerId": "hustleAnchor", "textOriginal": "Files, drives, chairs — gone. The builder lobby calls it a routine audit. Routine audits do not need three tempos at midnight.", "textTranslation": "Files, drives, chairs — gone. The builder lobby calls it a routine audit. Routine audits don't need three tempos at midnight.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch4-tower-static",
+      "chapter": 4,
+      "station": "koliwada-community-station",
+      "tone": "community radio, close to the mic, sea sounds behind",
+      "headline": "Koliwada mast picks up interference from the Mother Tower",
+      "lines": [
+        { "lineId": "bulletin-ch4-01", "speakerId": "koliwadaHost", "textOriginal": "Sorry listeners — mera signal aaj ajeeb hai. Varli tower se ek nayi frequency aa rahi hai.", "textTranslation": "Sorry listeners — my signal is strange today. A new frequency is coming from the Varli tower.", "language": "hinglish" },
+        { "lineId": "bulletin-ch4-02", "speakerId": "koliwadaHost", "textOriginal": "Koi test nahi hai. Koi license nahi hai. Kaun chala raha hai, koi nahi batata.", "textTranslation": "There is no test. There is no licence. Nobody says who is running it.", "language": "hinglish" }
+      ]
+    },
+    {
+      "id": "bulletin-ch5-after-dark",
+      "chapter": 5,
+      "station": "bambai-after-dark",
+      "tone": "late-night, low voice, first broadcast of the new station",
+      "headline": "Bambai After Dark signs on, unlicensed",
+      "lines": [
+        { "lineId": "bulletin-ch5-01", "speakerId": "afterDarkHost", "textOriginal": "Agar ye station mila hai toh tum special ho. Ya lucky. Ya dono.", "textTranslation": "If you found this station, you're special. Or lucky. Or both.", "language": "hinglish" },
+        { "lineId": "bulletin-ch5-02", "speakerId": "afterDarkHost", "textOriginal": "Main wahi baat karunga jo baaki stations nahi kar rahe. Aaj: ek body, ek file, aur ek gaayab aadmi.", "textTranslation": "I'll talk about what the other stations won't. Tonight: one body, one file, and one missing man.", "language": "hinglish" }
+      ]
+    }
+  ]
+}

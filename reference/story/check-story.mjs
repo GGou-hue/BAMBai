@@ -55,7 +55,7 @@ check(endings.endings.length === 4, `expected 4 endings, got ${endings.endings.l
 for (const e of endings.endings) check(Object.keys(e.versions).length === 4, `ending ${e.id} missing protagonist versions`);
 
 // radio
-check(radio.stations.length === 7, `expected 7 stations, got ${radio.stations.length}`);
+check(radio.stations.length === 8, `expected 8 stations, got ${radio.stations.length}`);
 check(radio.towers.length === 5, `expected 5 towers, got ${radio.towers.length}`);
 for (const t of radio.towers) for (const s of t.carries) {
   if (radio.stations.some((x) => x.id === s) || ['koliwada-community-station', 'indie-boutique-station', 'campus-station', 'mw-service'].includes(s)) continue;
@@ -74,6 +74,19 @@ for (const sc of scenes) {
   }
 }
 
+// bulletins (act data files)
+const bulletinFiles = fs.readdirSync('story/radio').filter((f) => /^bulletins-/.test(f));
+const stationIds = new Set(radio.stations.map((s) => s.id));
+for (const f of bulletinFiles) {
+  const bl = read('story/radio/' + f);
+  check(bl.bulletins?.length > 0, `bulletin file ${f} empty`);
+  for (const b of bl.bulletins) {
+    check(stationIds.has(b.station), `bulletin ${b.id} unknown station ${b.station}`);
+    check(chapterNs.has(b.chapter), `bulletin ${b.id} bad chapter`);
+    check(b.lines?.length >= 1, `bulletin ${b.id} has no lines`);
+  }
+}
+
 if (fails.length) { console.log('FAIL:'); fails.forEach((f) => console.log(' -', f)); process.exit(1); }
 if (warns.length) { console.log('WARNINGS:'); warns.forEach((w) => console.log(' -', w)); }
-console.log(`OK: 4 protagonists, 20 chapters, ${missions.missions.length} mission ids (48 core), 4 endings, 7 stations, 5 towers, ${scenes.length} scene(s) validated${warns.length ? ` (${warns.length} warnings)` : ''}`);
+console.log(`OK: 4 protagonists, 20 chapters, ${missions.missions.length} mission ids (48 core), 4 endings, ${radio.stations.length} stations, 5 towers, ${scenes.length} scene(s), ${bulletinFiles.length} bulletin act file(s) validated${warns.length ? ` (${warns.length} warnings)` : ''}`);

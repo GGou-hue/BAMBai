@@ -88,7 +88,7 @@
     { "id": "kavya", "name": "Kavya", "inBuild": true, "role": "Meridian Times journalist", "voice": "sharp, impatient, idealistic" },
     { "id": "putta", "name": "Putta", "inBuild": true, "role": "Local fixer", "voice": "casual menace, self-justification" },
     { "id": "shobha", "name": "Shobha Aunty", "inBuild": true, "role": "PG owner; community figure", "voice": "existing build voice" },
-    { "id": "meeraNpc", "name": "Meera (as NPC)", "inBuild": true, "role": "playable in own route; NPC ally in others", "voice": "practical, harbour-specific, grounded" },
+    { "id": "meera", "name": "Meera “Meenu” Naik", "inBuild": true, "role": "playable protagonist in her own route; NPC ally/source in the other three routes (cast.js: meera, saree model)", "voice": "practical, harbour-specific, grounded" },
     { "id": "pradhan", "name": "ACP Devendra Pradhan", "inBuild": false, "role": "Aarav's commanding officer; institutional betrayer who believes he prevented a collapse", "voice": "controlled, paternal, institutional" },
     { "id": "farah", "name": "Dr Farah Contractor", "inBuild": false, "role": "Forensic specialist", "voice": "clinical, exact, never overclaims" },
     { "id": "baiFiroz", "name": "Bai Firoz", "inBuild": false, "role": "Harbour matriarch; negotiated system of favours and fear", "voice": "warm hospitality with threat underneath" },

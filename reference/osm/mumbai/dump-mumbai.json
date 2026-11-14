@@ -207,6 +207,18 @@
    "ry": 0.663,
    "label": "Rakshas House"
   },
+  "fmTowerMother": {
+   "x": -393.83,
+   "z": -1069.41,
+   "ry": -0.989,
+   "label": "Varli Prasarayan Tower"
+  },
+  "fmTowerKoliwada": {
+   "x": 410.9,
+   "z": -935.1,
+   "ry": 1.563,
+   "label": "Koliwada Community Mast"
+  },
   "santhe": {
    "x": 182.23,
    "z": -800.62,
