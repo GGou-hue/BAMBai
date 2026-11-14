@@ -1,0 +1,6 @@
+=== npc.js: 3 dialogue strings changed by sweep
+`Kannada? Yes yes, I don't know! See, I know Kannada.`
+`Man, my whole youth was spent at Silk Board.`
+`Thirty years I am in BAMBAI. I know a little Kannada. Just a little.`
+=== audio.js: 1 dialogue strings changed by sweep
+`SILK BOARD TRAFFIC RADIO`

@@ -1,0 +1,187 @@
+[
+ {
+  "file": "radio-1-1",
+  "text": "Control to Kolvada units. Suspect on a two-wheeler, delivery bag, heading to Bandar Road.",
+  "rate": 2
+ },
+ {
+  "file": "radio-2-1",
+  "text": "All units, Moti Haar Marg side, rash driving. Intercept him.",
+  "rate": 2
+ },
+ {
+  "file": "radio-3-1",
+  "text": "Control here. Suspect seen near the water tank junction. Units respond.",
+  "rate": 2
+ },
+ {
+  "file": "radio-4-1",
+  "text": "Unit two, put up a roadblock. Over.",
+  "rate": 2
+ },
+ {
+  "file": "radio-5-1",
+  "text": "Control to Kolvada units. Suspect in a car, heading towards Bandar Road. Pursue, over.",
+  "rate": 2
+ },
+ {
+  "file": "radio-6-1",
+  "text": "All units, an auto-rickshaw doing rash driving, Kolvada. Intercept him.",
+  "rate": 2
+ },
+ {
+  "file": "radio-7-1",
+  "text": "Control here. Suspect on a two-wheeler, no helmet, weaving through traffic. Units respond.",
+  "rate": 2
+ },
+ {
+  "file": "radio-8-1",
+  "text": "Control to Kolvada units. Suspect on foot, running towards the creek. Catch him, over.",
+  "rate": 2
+ },
+ {
+  "file": "radio-9-1",
+  "text": "All units, be alert on Moti Haar Marg. Control out.",
+  "rate": 2
+ },
+ {
+  "file": "radio-10-1",
+  "text": "Unit three, suspect seen near the water tank junction again. Back-up needed, over.",
+  "rate": 2
+ },
+ {
+  "file": "whitefield-1",
+  "text": "Can we take this offline? I'm stuck on the Sion flyover.",
+  "rate": -1
+ },
+ {
+  "file": "whitefield-2",
+  "text": "Let's circle back after the stand-up. My driver is at BKC for some reason.",
+  "rate": -1
+ },
+ {
+  "file": "whitefield-3",
+  "text": "Quick sync? I'll join from the auto. Can you hear the horns? That's the agenda.",
+  "rate": -1
+ },
+ {
+  "file": "whitefield-4",
+  "text": "Per my last email, the traffic is not a blocker. It's a lifestyle.",
+  "rate": -1
+ },
+ {
+  "file": "goon-11-1",
+  "text": "The creek is ours!",
+  "rate": -1
+ },
+ {
+  "file": "delhi-2",
+  "text": "Marathi? Yes yes, I don't know! See, I know Marathi.",
+  "rate": -1
+ },
+ {
+  "file": "delhi-3",
+  "text": "Man, my whole youth was spent in the Bandar jam.",
+  "rate": -1
+ },
+ {
+  "file": "tamil-3",
+  "text": "Thirty years I am in Bambai. I know a little Marathi. Just a little.",
+  "rate": -1
+ },
+ {
+  "file": "ident-kempu-1",
+  "text": "You're listening to Bambaiya FM! Gaani pe gaani, non-stop!",
+  "rate": 1
+ },
+ {
+  "file": "ident-kempu-2",
+  "text": "Bambaiya FM! The city's heartbeat, all day, all night!",
+  "rate": 1
+ },
+ {
+  "file": "ident-kempu-3",
+  "text": "From Kolvada to Dadar, this is Bambaiya FM!",
+  "rate": 1
+ },
+ {
+  "file": "ident-kempu-4",
+  "text": "Bambaiya FM! Full volume, full masti!",
+  "rate": 1
+ },
+ {
+  "file": "ident-hale-1",
+  "text": "Hale Gaani! Old songs, golden songs. Only Hale Gaani.",
+  "rate": 0
+ },
+ {
+  "file": "ident-hale-2",
+  "text": "The songs your nani hummed... Hale Gaani, Bambai's old is gold station.",
+  "rate": 0
+ },
+ {
+  "file": "ident-hale-3",
+  "text": "Hale Gaani! Where every song is a classic.",
+  "rate": 0
+ },
+ {
+  "file": "ident-silkboard-1",
+  "text": "Bambai Traffic Radio! Jam updates, every ten minutes.",
+  "rate": 1
+ },
+ {
+  "file": "ident-silkboard-2",
+  "text": "Stuck in the jam? You're with Bambai Traffic Radio.",
+  "rate": 1
+ },
+ {
+  "file": "ident-silkboard-3",
+  "text": "Bambai Traffic Radio. We know why you're late.",
+  "rate": 1
+ },
+ {
+  "file": "ident-silkboard-4",
+  "text": "Bambai Traffic Radio. Horn OK please!",
+  "rate": 1
+ },
+ {
+  "file": "rj-kempu-whitefield-1",
+  "text": "Bambaiya FM traffic watch! Rain in Dadar, water on the tracks, and every auto from here to Bandra wants double. Stay dry, keep the radio on!",
+  "rate": 0
+ },
+ {
+  "file": "rj-kempu-cricket-1",
+  "text": "And that's another six! Bambai wins by four wickets, and the streets are erupting! You heard it first on Bambaiya FM, the home of the champions!",
+  "rate": 0
+ },
+ {
+  "file": "rj-silkboard-whitefield-1",
+  "text": "Bambai Traffic Radio. Heavy jam at Sion circle, slow move past the Dadar flyover, and the Eastern Express is a parking lot. Leave now, reach never. Updates every ten minutes.",
+  "rate": 0
+ },
+ {
+  "file": "rj-silkboard-cricket-1",
+  "text": "Match day alert! Extra crowds near the sea stadium after six. Avoid the Moti Haar Marg, take the coast road at your own risk. Bambai Traffic Radio, jam by jam.",
+  "rate": 0
+ },
+ {
+  "file": "rj-silkboard-orr-1",
+  "text": "Bambai Traffic Radio, highway watch. Accident near the Sion toll, two lanes blocked. Trucks on the harbour line till midnight. Plan ahead, drive safe.",
+  "rate": 0
+ },
+ {
+  "file": "rj-hale-oldcity-1",
+  "text": "From the old city lanes, a song for every heartache. Hale Gaani... only the classics.",
+  "rate": -1
+ },
+ {
+  "file": "rj-hale-coffee-1",
+  "text": "Slow mornings, strong coffee, older songs. This is Hale Gaani, your companion with the morning chai.",
+  "rate": -1
+ },
+ {
+  "file": "ad-sites-1",
+  "text": "Dream homes at Sea Breeze Heights! Two B H K sea facing apartments, walking distance from the promenade. Book your site visit today. Sea Breeze Heights. Living, elevated.",
+  "rate": 0
+ }
+]
