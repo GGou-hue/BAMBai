@@ -119,9 +119,18 @@ class StoryState {
       // chapter reveal card (game's own HUD component)
       const ch = (story.chapters?.chapters ?? story.chapters ?? []).find?.((x) => (x.n ?? x.chapter) === n) ?? (Array.isArray(story.chapters) ? story.chapters[n - 1] : null);
       if (ch && this.game?.hud?.chapterCard) {
-        const act = (ch.act ?? 'act1').replace('act', 'ACT ').toUpperCase();
-        try { this.game.hud.chapterCard(`Chapter ${n}`, ch.title, act); } catch { }
+        const a = (story.acts ?? []).find((x) => x.chapters?.includes(n));
+        const actLabel = a ? a.id.replace('act', 'ACT ').toUpperCase() : 'ACT 1';
+        // Act I cliffhanger: play the act-end card before the next act's Chapter 6 card
+        const closingAct = n === 6 ? ((story.acts ?? []).find((x) => x.chapters?.includes(n - 1)) ?? (story.acts ?? [])[0]) : null;
+        if (closingAct) {
+          try { this.game.hud.chapterCard('End of Act I', closingAct.title ?? 'The First Body', closingAct.cliffhanger ?? 'four files, one creek'); } catch { }
+          setTimeout(() => { try { this.game.hud.chapterCard(`Chapter ${n}`, ch.title, actLabel); } catch { } }, 4700);
+        } else {
+          try { this.game.hud.chapterCard(`Chapter ${n}`, ch.title, actLabel); } catch { }
+        }
       }
+      if (n === 6) try { this.game?.hud?.toast?.('Act I complete — the creek was only the beginning.', 6000); } catch { }
       if (!file) return;
       const b = file.bulletins.find((x) => x.chapter === n);
       if (!b || this.state.bulletins.includes(b.id)) return;
