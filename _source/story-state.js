@@ -116,6 +116,12 @@ class StoryState {
   onChapterAdvance(n) {
     try {
       const file = n <= 5 ? act1Bulletins : null;
+      // chapter reveal card (game's own HUD component)
+      const ch = (story.chapters?.chapters ?? story.chapters ?? []).find?.((x) => (x.n ?? x.chapter) === n) ?? (Array.isArray(story.chapters) ? story.chapters[n - 1] : null);
+      if (ch && this.game?.hud?.chapterCard) {
+        const act = (ch.act ?? 'act1').replace('act', 'ACT ').toUpperCase();
+        try { this.game.hud.chapterCard(`Chapter ${n}`, ch.title, act); } catch { }
+      }
       if (!file) return;
       const b = file.bulletins.find((x) => x.chapter === n);
       if (!b || this.state.bulletins.includes(b.id)) return;
@@ -124,9 +130,25 @@ class StoryState {
       const text = `${b.headline} — ${b.lines[0]?.textOriginal ?? ''}`;
       this.game?.hud?.toast?.(`📻 ${b.headline}`, 6000);
       console.log(`[storyState] bulletin: ${text}`);
+      // broadcast the bulletin as real VO through the ./vo/ system (missing files skip silently)
+      this.playBulletin(b);
     } catch (e) {
       console.log('[storyState] bulletin error', e?.message);
     }
+  }
+
+  // queue the bulletin's VO lines sequentially through the engine's audio.say
+  playBulletin(b) {
+    (async () => {
+      let A = null;
+      try { A = (await import('./audio.js')).t; } catch { return; }
+      for (const line of b.lines) {
+        try {
+          const dur = await A.say(line.lineId, line.textOriginal);
+          await new Promise((r) => setTimeout(r, ((dur || 3) + 0.5) * 1000));
+        } catch { }
+      }
+    })();
   }
 
   bump(varName, delta) {
