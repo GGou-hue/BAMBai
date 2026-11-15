@@ -3,7 +3,7 @@
 const { chromium } = require('playwright-core');
 const WHO = process.argv[2] || 'meera';
 const MID = process.argv[3] || 'low-tide';
-const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBund', 'crime scene': 'lakeBund', 'counter log': 'xeroxShop', copier: 'xeroxShop' };
+const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBund', 'crime scene': 'lakeBund', 'counter log': 'xeroxShop', copier: 'xeroxShop', serial: 'lakeBund', drum: 'tankerDepot' };
 (async () => {
   const b = await chromium.launch({ channel: 'msedge', headless: true });
   const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
