@@ -4,7 +4,7 @@ const { chromium } = require('playwright-core');
 const WHO = process.argv[2] || 'aarav';
 const MID = process.argv[3] || 'last-entry';
 const EXTRAS = (process.argv[4] || '').split(',').filter(Boolean);
-const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBund', 'crime scene': 'lakeBund', 'counter log': 'xeroxShop', copier: 'xeroxShop', serial: 'lakeBund', drum: 'tankerDepot', 'landing chits': 'fmTowerKoliwada', 'chit book': 'fmTowerKoliwada', sluice: 'sluiceGate', 'building logs': 'vanijya', 'visitor log': 'vanijya', 'cctv vendor': 'vanijya', 'evidence room': 'policeOutpost', 'outfall camera': 'drainInlet' };
+const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBund', 'crime scene': 'lakeBund', 'counter log': 'xeroxShop', copier: 'xeroxShop', serial: 'lakeBund', drum: 'tankerDepot', 'landing chits': 'fmTowerKoliwada', 'chit book': 'fmTowerKoliwada', sluice: 'sluiceGate', 'building logs': 'vanijya', 'visitor log': 'vanijya', 'cctv vendor': 'vanijya', 'evidence room': 'policeOutpost', 'outfall camera': 'drainInlet', phone: 'santhe', bazaar: 'santhe', 'gully route': 'santhe', 'vanijya drop': 'vanijya', 'white shirt': 'teaStall' };
 (async () => {
   const b = await chromium.launch({ channel: 'msedge', headless: true });
   const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
@@ -13,7 +13,7 @@ const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBu
   const t0 = Date.now();
   const log = (s) => console.log('[' + Math.round((Date.now() - t0) / 1000) + 's] ' + s);
 
-  await p.goto('http://localhost:5173/?who=' + WHO, { waitUntil: 'commit', timeout: 60000 });
+  await p.goto('http://localhost:5173/?who=' + WHO + (WHO === 'arjun' ? '&mission=1' : ''), { waitUntil: 'commit', timeout: 60000 });
   await p.waitForFunction('window.__game !== undefined', null, { timeout: 600000 });
   log('game booted');
   await p.waitForTimeout(15000);
@@ -21,10 +21,12 @@ const TP = { 'survey mark': 'surveyPegs', pillar: 'surveyPegs', boatman: 'lakeBu
   await p.waitForFunction('window.__storyState !== undefined', null, { timeout: 30000 }).catch(() => {});
   await p.waitForTimeout(8000);
   await p.evaluate(() => window.__tp && window.__tp('pg')).catch(() => {});
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 75; i++) {
     await p.waitForTimeout(2000);
     await p.keyboard.press('Space').catch(() => {});
     await p.mouse.click(640, 600).catch(() => {});
+    if (i === 5) await p.evaluate(() => window.__tp && window.__tp('pg')).catch(() => {});
+    if (i === 20) await p.evaluate(() => window.__tp && window.__tp('pg')).catch(() => {});
     const cur = await p.evaluate(() => ({ cur: window.__story.current ? 1 : 0, next: window.__story.save.next })).catch(() => null);
     if (cur && !cur.cur && cur.next >= 1) { log('arrival complete'); break; }
   }
