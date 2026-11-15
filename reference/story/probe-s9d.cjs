@@ -39,7 +39,7 @@ const WHO = process.env.WHO || 'arjun';
   const ch9Card = res.cards.some((c) => c[0] === 'Chapter 9');
   const ch10Card = res.cards.some((c) => c[0] === 'Chapter 10');
   const act3 = res.cards.some((c) => /ACT 3/.test(c[2] || ''));
-  const ok = fin.chapter === 10 && res.chapter === 11 && ch9Card && ch10Card && ch11Card && act3 && fin.ch9Ids.length === 3 && fin.ch10Ids.length === 2;
+  const ok = fin.chapter === 11 && res.chapter === 11 && ch9Card && ch10Card && ch11Card && act3 && fin.ch9Ids.length === 3 && fin.ch10Ids.length === 2;
   log('S9D ' + (ok ? 'PASS' : 'FAIL') + ' — ' + WHO + ' ch1-10 done -> chapter 11 (ch9card=' + ch9Card + ' ch10card=' + ch10Card + ' ch11card=' + ch11Card + ' act3=' + act3 + ' ch9missions=' + fin.ch9Ids.length + ' ch10missions=' + fin.ch10Ids.length + ')');
   console.log('errors:', errs.length ? errs.join(' | ') : 'none');
   await b.close();
