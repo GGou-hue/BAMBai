@@ -1,0 +1,116 @@
+{
+  "$schema": "Act II radio news bulletins (S7 data). Broadcast from the Varli Prasarayan Tower 'Mother Tower' and the Koliwada community mast. Played at chapter transitions 6-10; each bulletin is a queue of VO line objects consumable by the ./vo/ system (line.lineId + line.textOriginal).",
+  "act": "act2",
+  "bulletins": [
+    {
+      "id": "bulletin-ch6-drums-inland",
+      "chapter": 6,
+      "station": "bambai-traffic-radio",
+      "tone": "matter-of-fact, traffic-report cadence",
+      "headline": "Harbour freight logs show drums moved inland overnight",
+      "lines": [
+        { "lineId": "bulletin-ch6-01", "speakerId": "trafficRadioAnchor", "textOriginal": "Traffic update. Harbour depot logs show drums moved inland overnight. Vanijya Sankeerna, not the jetty.", "textTranslation": "Traffic update. Harbour depot logs show drums moved inland overnight. Vanijya Sankeerna, not the jetty.", "language": "en" },
+        { "lineId": "bulletin-ch6-02", "speakerId": "trafficRadioAnchor", "textOriginal": "Police ask drivers to avoid the creek road after eleven. They do not say why.", "textTranslation": "Police ask drivers to avoid the creek road after eleven. They do not say why.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch6-tower-hum",
+      "chapter": 6,
+      "station": "koliwada-community-station",
+      "tone": "community radio, close to the mic, sea sounds behind",
+      "headline": "The Mother Tower hums at night",
+      "lines": [
+        { "lineId": "bulletin-ch6-03", "speakerId": "koliwadaHost", "textOriginal": "Sun listeners — Varli tower has a new frequency again. It hums between songs. Nobody claims it.", "textTranslation": "Dear listeners — the Varli tower has a new frequency again. It hums between songs. Nobody claims it.", "language": "hinglish" },
+        { "lineId": "bulletin-ch6-04", "speakerId": "koliwadaHost", "textOriginal": "Mera signal ajeeb hai. Aapka bhi? Phone kijiye.", "textTranslation": "My signal is strange. Yours too? Call us.", "language": "hinglish" }
+      ]
+    },
+    {
+      "id": "bulletin-ch7-wrong-train",
+      "chapter": 7,
+      "station": "bambai-traffic-radio",
+      "tone": "matter-of-fact, traffic-report cadence",
+      "headline": "Local train skips Platform Six again",
+      "lines": [
+        { "lineId": "bulletin-ch7-01", "speakerId": "trafficRadioAnchor", "textOriginal": "The 18:42 local skipped Platform Six again. Crew cite a signal fault.", "textTranslation": "The 18:42 local skipped Platform Six again. Crew cite a signal fault.", "language": "en" },
+        { "lineId": "bulletin-ch7-02", "speakerId": "trafficRadioAnchor", "textOriginal": "Passengers say a man in a grey coat walked the length of the platform and got off at no station.", "textTranslation": "Passengers say a man in a grey coat walked the length of the platform and got off at no station.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch7-dock-ledger",
+      "chapter": 7,
+      "station": "hustle-fm",
+      "tone": "business-news clipped, nervous",
+      "headline": "Dock ledger pages go missing",
+      "lines": [
+        { "lineId": "bulletin-ch7-03", "speakerId": "hustleAnchor", "textOriginal": "Markets watch the harbour. The Vanijya night ledger has gaps. The harbour office calls it paperwork.", "textTranslation": "Markets watch the harbour. The Vanijya night ledger has gaps. The harbour office calls it paperwork.", "language": "en" },
+        { "lineId": "bulletin-ch7-04", "speakerId": "hustleAnchor", "textOriginal": "Paperwork you cannot read is not paperwork. It is a lock.", "textTranslation": "Paperwork you cannot read is not paperwork. It is a lock.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch8-mill-land",
+      "chapter": 8,
+      "station": "hustle-fm",
+      "tone": "business-news clipped, nervous",
+      "headline": "Mill land records revised again",
+      "lines": [
+        { "lineId": "bulletin-ch8-01", "speakerId": "hustleAnchor", "textOriginal": "Lower Parel mill plots change hands in threes. The registry stamp is the same hand.", "textTranslation": "Lower Parel mill plots change hands in threes. The registry stamp is the same hand.", "language": "en" },
+        { "lineId": "bulletin-ch8-02", "speakerId": "hustleAnchor", "textOriginal": "Three sales, one stamp, zero signatures. The market calls it efficiency. We call it a pattern.", "textTranslation": "Three sales, one stamp, zero signatures. The market calls it efficiency. We call it a pattern.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch8-mast-harbour",
+      "chapter": 8,
+      "station": "koliwada-community-station",
+      "tone": "community radio, close to the mic, sea sounds behind",
+      "headline": "Community mast hears the harbour at night",
+      "lines": [
+        { "lineId": "bulletin-ch8-03", "speakerId": "koliwadaHost", "textOriginal": "Listeners near the Koliwada mast report harbour noise on the frequency. Harbour is ten kilometres away.", "textTranslation": "Listeners near the Koliwada mast report harbour noise on the frequency. The harbour is ten kilometres away.", "language": "hinglish" },
+        { "lineId": "bulletin-ch8-04", "speakerId": "koliwadaHost", "textOriginal": "Yaar, paani ka awaaz hai. Bees kilo meter door. Kaise?", "textTranslation": "Friend, it is the sound of water. Ten kilometres away. How?", "language": "hinglish" }
+      ]
+    },
+    {
+      "id": "bulletin-ch9-press-fire",
+      "chapter": 9,
+      "station": "bambai-traffic-radio",
+      "tone": "urgent, read fast",
+      "headline": "Fire at a Fort print shop",
+      "lines": [
+        { "lineId": "bulletin-ch9-01", "speakerId": "trafficRadioAnchor", "textOriginal": "Breaking: a print shop near the xerox row burned overnight. Owners say the presses were already gone.", "textTranslation": "Breaking: a print shop near the xerox row burned overnight. Owners say the presses were already gone.", "language": "en" },
+        { "lineId": "bulletin-ch9-02", "speakerId": "trafficRadioAnchor", "textOriginal": "Fire crews took forty minutes. The water pressure was low. Again.", "textTranslation": "Fire crews took forty minutes. The water pressure was low. Again.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch9-after-dark",
+      "chapter": 9,
+      "station": "bambai-after-dark",
+      "tone": "late-night, low voice, first broadcast of the new station",
+      "headline": "One copy left",
+      "lines": [
+        { "lineId": "bulletin-ch9-03", "speakerId": "afterDarkHost", "textOriginal": "If you are hearing this, the last copy is still out there. Do not let them print over it.", "textTranslation": "If you are hearing this, the last copy is still out there. Do not let them print over it.", "language": "en" },
+        { "lineId": "bulletin-ch9-04", "speakerId": "afterDarkHost", "textOriginal": "Aaj raat, hum bol rahe hain. Kal shayad nahi.", "textTranslation": "Tonight we speak. Tomorrow, maybe not.", "language": "hinglish" }
+      ]
+    },
+    {
+      "id": "bulletin-ch10-no-case",
+      "chapter": 10,
+      "station": "bambai-traffic-radio",
+      "tone": "matter-of-fact, read slow",
+      "headline": "Case numbers vanish from the registry",
+      "lines": [
+        { "lineId": "bulletin-ch10-01", "speakerId": "trafficRadioAnchor", "textOriginal": "Three case files carry no number. The registry clerk asks for patience; the police ask for silence.", "textTranslation": "Three case files carry no number. The registry clerk asks for patience; the police ask for silence.", "language": "en" },
+        { "lineId": "bulletin-ch10-02", "speakerId": "trafficRadioAnchor", "textOriginal": "A file with no number is not a file. It is a hole.", "textTranslation": "A file with no number is not a file. It is a hole.", "language": "en" }
+      ]
+    },
+    {
+      "id": "bulletin-ch10-pirate",
+      "chapter": 10,
+      "station": "bambai-after-dark",
+      "tone": "late-night, low voice, unlicensed",
+      "headline": "The pirate frequency is the story now",
+      "lines": [
+        { "lineId": "bulletin-ch10-03", "speakerId": "afterDarkHost", "textOriginal": "Every station carries it now: an unlicensed voice reading the harbour ledger aloud. The Mother Tower does not stop it.", "textTranslation": "Every station carries it now: an unlicensed voice reading the harbour ledger aloud. The Mother Tower does not stop it.", "language": "en" },
+        { "lineId": "bulletin-ch10-04", "speakerId": "afterDarkHost", "textOriginal": "Wo tower jo sabko rokti hai, ab humein nahi rok sakti.", "textTranslation": "The tower that stops everyone can no longer stop us.", "language": "hinglish" }
+      ]
+    }
+  ]
+}

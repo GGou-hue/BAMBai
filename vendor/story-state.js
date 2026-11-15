@@ -4,6 +4,7 @@
 // Engine-facing: window.__storyState (the engine's own manager stays __story).
 import story from './story.js';
 import act1Bulletins from '../story/radio/bulletins-act1.json';
+import act2Bulletins from '../story/radio/bulletins-act2.json';
 
 const VARS = ['evidence', 'trust', 'loyalty', 'compromise'];
 const VAR_LIMIT = 100;
@@ -14,6 +15,8 @@ const ENGINE_MAP = {
   'eleven-tonight': 'eleven-tonight',
   'press-matter': 'press-matter',
   'peg-man': 'peg-man',
+  'peg-truck': 'peg-truck',
+  'night-net': 'night-net',
 };
 
 class StoryState {
@@ -33,6 +36,7 @@ class StoryState {
       vars: { evidence: 0, trust: 0, loyalty: 0, compromise: 0 },
       evidence: [], // {id, missionId, label}
       bulletins: [], // bulletin ids already played
+      world: { pressBurnt: false, accountFrozen: false, caseReassigned: false },
     };
   }
 
@@ -115,7 +119,7 @@ class StoryState {
   // chapter advanced -> radio bulletin toast (S1 data, S3 wiring)
   onChapterAdvance(n) {
     try {
-      const file = n <= 5 ? act1Bulletins : null;
+      const file = n <= 5 ? act1Bulletins : n <= 10 ? act2Bulletins : null;
       // chapter reveal card (game's own HUD component)
       const ch = (story.chapters?.chapters ?? story.chapters ?? []).find?.((x) => (x.n ?? x.chapter) === n) ?? (Array.isArray(story.chapters) ? story.chapters[n - 1] : null);
       if (ch && this.game?.hud?.chapterCard) {
@@ -176,6 +180,13 @@ class StoryState {
   }
 
   // ending calculator (bible §14): highest-priority variable decides
+  // world-state world flags (press burnt, account frozen, case reassigned)
+  addWorldFlag(key, value) {
+    if (!Object.prototype.hasOwnProperty.call(this.state.world, key)) return;
+    this.state.world[key] = value !== false;
+    this.persist();
+  }
+
   ending() {
     const v = this.state.vars;
     const entries = [
