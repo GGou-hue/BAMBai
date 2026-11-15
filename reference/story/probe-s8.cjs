@@ -1,7 +1,7 @@
 // S6 slice-8 probe: Act I cliffhanger fires on Ch5 -> 6 advance (headless msedge)
 const { chromium } = require('playwright-core');
 const URL = process.env.PROBE_URL || 'http://localhost:5174/';
-const WHO = 'meera';
+const WHO = process.env.WHO || 'meera';
 (async () => {
   const b = await chromium.launch({ channel: 'msedge', headless: true });
   const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
@@ -27,7 +27,7 @@ const WHO = 'meera';
     hud.chapterCard = function (a, b, c) { window.__cards.push([a, b, c]); return oc(a, b, c); };
     hud.toast = function (t, ms) { window.__toasts.push(String(t)); return ot(t, ms); };
     const st = window.__storyState;
-    const missions = window.__storyState.missionsFor('meera').filter((m) => m.chapter >= 1 && m.chapter <= 5);
+    const missions = window.__storyState.missionsFor(window.__storyState.state.who).filter((m) => m.chapter >= 1 && m.chapter <= 5);
     missions.sort((a, b) => a.chapter - b.chapter);
     for (const m of missions) st.completeMission(m.id);
     return { done: st.state.done.slice(), chapter: st.state.chapter, bulletins: st.state.bulletins.slice(), who: st.state.who };
@@ -45,7 +45,7 @@ const WHO = 'meera';
   log('cards: ' + JSON.stringify(res.cards));
   log('toasts: ' + JSON.stringify(res.toasts));
   log('bulletins: ' + JSON.stringify(res.bulletins));
-  try { await p.screenshot({ path: 'reference/story/shots/s8-act1-cliffhanger.png', fullPage: true }); } catch { }
+  try { await p.screenshot({ path: 'reference/story/shots/' + (process.env.SHOT || 's8-act1-cliffhanger') + '.png', fullPage: true }); } catch { }
   const endCard = res.cards.some((c) => c[0] === 'End of Act I' && c[1] === 'The First Body' && /much larger discovery/.test(c[2] || ''));
   const ch6Card = res.cards.some((c) => c[0] === 'Chapter 6');
   const act1Toast = res.toasts.some((t) => /Act I complete/.test(t));
