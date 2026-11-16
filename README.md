@@ -25,7 +25,7 @@ Vikram Salvi is found dead in an unfinished tower in Backbay. The official story
 
 ## What's in the build
 
-- **20 chapters · 48 core missions** across four protagonists + **12 side missions** (S0–S11) + world-state flags (press burnt, accounts frozen, case files reassigned)
+- **20 chapters · 48 core missions** across four protagonists + **12 side missions to spec** (Koli Myths gates Ch 6 · Bog Ride trophy · Match Fix · Rooftops fast-travel) + world-state flags (press burnt, accounts frozen, case files reassigned, cricket season 2)
 - **Real OSM South Mumbai**: Kolvada (Colaba), Moti Haar Marg (Marine Drive), Fort/CSMT, Mota Bazaar, Backbay, the creek — 534 blocks, 3,151 footprints, sea polygon, monsoon/flood weather
 - **7 radio stations** + the **Varli Prasarayan Tower** ("Mother Tower") skyline landmark + Koliwada community mast + pirate Bambai After Dark
 - **4 endings** decided by your evidence/trust/loyalty/compromise vars: *The Paper · The Badge · The Empire · The Rakshasa*
@@ -59,7 +59,7 @@ Or with the dev server (HMR, story-layer hooks):
 
 ```bash
 pnpm install
-pnpm run dev        # vite on :5173
+pnpm run dev        # vite on :5173 (auto-falls back to :5174 if 5173 is occupied)
 ```
 
 **Boot:** the loading bar eases asymptotically (fake progress); the city build is CPU-bound (OSM geometry + 95 preload GLBs) — a cold boot takes ~6–10 min on a slow disk; subsequent boots reuse the module cache. If it stalls, wait it out; the bar is cosmetic (`bn=[.05,.15,.45,.7,1]`).
@@ -87,7 +87,7 @@ BAMBai-STORY-PHASES.md   # S0–S11 execution log
 ## Development
 
 - **Stack:** Three.js r186-era, custom physics (Rapier), static ESM in `vendor/`, Vite dev shell
-- **Validation:** `node --experimental-vm-modules` ESM parse (86/86) + headless-Edge probes (`reference/story/probe-*.cjs`) that play chapters and assert cards/evidence/zero page errors
+- **Validation:** `node --experimental-vm-modules` ESM parse (88/88) + headless-Edge probes (`reference/story/probe-*.cjs`) that play chapters and assert cards/evidence/zero page errors
 - **Map pipeline:** real Overpass extracts → `osm2map-stage{1,23,4}.mjs` → `vendor/map.js` (fictionalised names via rename maps)
 - **Audio:** street/radio WAVs via Windows SAPI (`gen-vo.ps1`, `gen-bulletins.mjs`); bulletin filter = bandpass + acrusher + echo (pirate-radio)
 
@@ -98,9 +98,11 @@ BAMBai-STORY-PHASES.md   # S0–S11 execution log
 - ✅ Ch 6–10 (Act II: Peg Truck → No Case Number) + Act II bulletins (ch6–10)
 - ✅ Ch 11–15 (Act III: Stay Order → Belapur Papers)
 - ✅ Ch 16–20 (Act IV: Internal Affairs → The City Keeps Secrets, ending calculator wired)
-- ✅ 12 side missions (S0–S11) offered + completable
+- ✅ 12 side missions to spec (Koli Myths gates Ch 6 · Bog Ride time-trial + trophy badge · Match Fix + cricketSeason2 · Rooftops fast-travel · 8 more) — all offered + verified complete in headless Edge
+- ✅ Full 20-chapter campaign probe **PASS for arjun, meera, aarav** — 48 missions → chapter 21, every chapter card fires, ending calculator returns an ending, zero page errors
+- ✅ S10 side mission probe **PASS — 12/12 offered and completed**, zero page errors
 - ⏳ Parallel map session: Central Line Zone B (Dadar→Sion→Kurla) OSM pipeline
-- ⏳ Pending: full per-protagonist sweep, human VO re-record, HUD debt-ticker, README art pass
+- ⏳ Pending: human VO re-record (SAPI voices work but are synthetic), HUD debt ticker (bow out), UI-BADGE-17 art ("Bambai Bhairavi" badge def is wired; the .webp art is pending)
 
 ## Credits
 

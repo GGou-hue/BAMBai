@@ -36,6 +36,7 @@ class StoryState {
       vars: { evidence: 0, trust: 0, loyalty: 0, compromise: 0 },
       evidence: [], // {id, missionId, label}
       bulletins: [], // bulletin ids already played
+      world: { pressBurnt: false, accountFrozen: false, caseReassigned: false, cricketSeason2: false },
       world: { pressBurnt: false, accountFrozen: false, caseReassigned: false },
     };
   }
@@ -182,7 +183,7 @@ class StoryState {
   // ending calculator (bible §14): highest-priority variable decides
   // world-state world flags (press burnt, account frozen, case reassigned)
   addWorldFlag(key, value) {
-    if (!Object.prototype.hasOwnProperty.call(this.state.world, key)) return;
+    if (!this.state.world) this.state.world = { pressBurnt: false, accountFrozen: false, caseReassigned: false, cricketSeason2: false };
     this.state.world[key] = value !== false;
     this.persist();
   }
