@@ -3,9 +3,14 @@
 // Projection math mirrors map.js's t(): linear (no warp), scale .5 → 1 unit ≈ 2 m.
 import fs from 'fs';
 
-const BBOX = { S: 18.905, W: 72.815, N: 18.945, E: 72.845 };
+// S7: fetch bbox extended north/east (Zone B: Lower Parel, Dadar, Matunga, Sewri, Wadala)
+// SYMMETRICALLY around the original center (18.925, 72.830) so map.js's t() — which
+// derives its projection center from the bbox midpoint — keeps the exact original frame
+// and every existing anchor (spawn, towers, mission sites) keeps its world coordinate.
+// The extra south/west area is open Arabian Sea (cheap in OSM terms).
+const BBOX = { S: 18.82, W: 72.795, N: 19.03, E: 72.865 };
 const SCALE = 0.5;
-const LAT0 = (BBOX.S + BBOX.N) / 2, LON0 = (BBOX.W + BBOX.E) / 2;
+const LAT0 = (BBOX.S + BBOX.N) / 2, LON0 = (BBOX.W + BBOX.E) / 2; // = 18.925, 72.830 (frozen)
 const U = 111320 * Math.cos(LAT0 * Math.PI / 180), D = 110540;
 const toGame = (lat, lon) => [
   +(((lon - LON0) * U) * SCALE).toFixed(1),
@@ -48,6 +53,31 @@ for (const el of hw.elements) {
   const nds = el.nodes.filter(id => nodesById.has(id));
   if (nds.length < 2) continue;
   ways.push({ id: el.id, name: el.tags.name || '', hw: el.tags.highway, rank: cls, nds, oneway: el.tags.oneway === 'yes' });
+}
+
+// --- Zone B compression (S7): the extended fetch is ~7x the original data; full
+// detail north of the original map's north edge (z < Z_SPLIT) explodes boot time.
+// North of the split: keep arterials+mains, decimate locals, drop lanes/services.
+// Ways straddling the split line are kept whole (seam continuity).
+const Z_SPLIT = -1110; // original fetch bbox north edge in world z
+{
+  const latOf = id => { const n = nodesById.get(id); return n ? n[0] : null; };
+  const minLat = z => z === undefined ? null : z; // placeholder to keep linter quiet
+  const inNorth = w => {
+    let north = 0;
+    for (const id of w.nds) { const n = nodesById.get(id); if (n && -(n[0] - 18.925) * 110540 * 0.5 < Z_SPLIT) north++; }
+    return north === w.nds.length;
+  };
+  const beforeWays = ways.length;
+  const kept = [];
+  for (const w of ways) {
+    if (!inNorth(w)) { kept.push(w); continue; }
+    if (w.rank === 3) continue;
+    if (w.rank === 2 && (w.id % 4) !== 0) continue;
+    kept.push(w);
+  }
+  console.log(`zone-B road compression: ${beforeWays} -> ${kept.length} ways`);
+  ways.length = 0; ways.push(...kept);
 }
 
 // --- junction detection: OSM node used by 2+ ways ---
@@ -493,11 +523,20 @@ for (let iter3 = 0; iter3 < 2; iter3++) {
   }
 }
 
-// --- bounds: from actual node extent (Overpass ways may poke outside the query bbox) ---
+// --- bounds: from actual node extent, CLAMPED to the fetch bbox + margin ---
+// (long ways like the MTHL harbour bridge poke far outside; without the clamp
+// the sea ring, districts and block polygonization inflate to cover the void)
 let minX = 1e9, maxX = -1e9, minZ = 1e9, maxZ = -1e9;
 for (const [x, z] of nodes) {
   if (x < minX) minX = x; if (x > maxX) maxX = x;
   if (z < minZ) minZ = z; if (z > maxZ) maxZ = z;
+}
+{
+  const M = 60, U = 111320 * Math.cos(LAT0 * Math.PI / 180), D = 110540;
+  const bx0 = (BBOX.W - LON0) * U * SCALE - M, bx1 = (BBOX.E - LON0) * U * SCALE + M;
+  const bz0 = -(BBOX.N - LAT0) * D * SCALE - M, bz1 = -(BBOX.S - LAT0) * D * SCALE + M;
+  minX = Math.max(minX, bx0); maxX = Math.min(maxX, bx1);
+  minZ = Math.max(minZ, bz0); maxZ = Math.min(maxZ, bz1);
 }
 minX = +minX.toFixed(1) - 1; maxX = +maxX.toFixed(1) + 1;
 minZ = +minZ.toFixed(1) - 1; maxZ = +maxZ.toFixed(1) + 1;

@@ -7,6 +7,7 @@ const S1 = JSON.parse(fs.readFileSync('reference/osm/mumbai/stage1.json', 'utf8'
 const GREEN = JSON.parse(fs.readFileSync('reference/osm/sm-green.json', 'utf8'));
 const BLDG = JSON.parse(fs.readFileSync('reference/osm/sm-buildings.json', 'utf8'));
 const { LAT0, LON0, scale, bounds } = S1;
+const Z_SPLIT = -1110; // original fetch bbox north edge (matches stage1's Zone B split)
 const U = 111320 * Math.cos(LAT0 * Math.PI / 180), D = 110540;
 const P = (lat, lon) => [+(((lon - LON0) * U) * scale).toFixed(1), +((-(lat - LAT0) * D) * scale).toFixed(1)];
 
@@ -254,6 +255,19 @@ for (const poly of blocks) {
 console.log(`inset tiers: full=${tierFull} 60%=${tier6} 35%=${tier35} uniform=${tierU}`);
 console.log(`inset fallbacks: ${insetFalls}/${blocks.length} faces needed a smaller inset`);
 const cleanBlocks = sanitize(insetBlocks, 120, 'blocks');
+// Zone B compression: keep 1 in 5 blocks north of the original map edge
+{
+  let northB = 0;
+  const before = cleanBlocks.length;
+  const keptB = [];
+  for (const blk of cleanBlocks) {
+    const cz = centroid(blk)[1];
+    if (cz < Z_SPLIT) { northB++; if (northB % 5 !== 0) continue; }
+    keptB.push(blk);
+  }
+  cleanBlocks.length = 0; cleanBlocks.push(...keptB);
+  console.log(`zone-B block compression: ${before} -> ${cleanBlocks.length} blocks (north ${northB})`);
+}
 const cleanParks = sanitize(greenWays, 300, 'parks');
 console.log(`faces: ${faces.length}, blocks kept: ${cleanBlocks.length}`);
 const areas = cleanBlocks.map(b => Math.round(Math.abs(area2(b)))).sort((a, b) => a - b);
@@ -294,6 +308,7 @@ const KIND_BY_TAG = t => {
 };
 const footprints = [];
 let skipped = 0;
+let northFp = 0; // Zone B compression counter
 const ringOf = el => {
   if (el.geometry) return el.geometry.map(g => P(g.lat, g.lon));
   if (el.nodes) return el.nodes.map(id => bldgNodes.get(id)).filter(Boolean).map(([la, lo]) => P(la, lo));
@@ -305,6 +320,7 @@ const pushRing = (ring, tags) => {
   if (A < 12) { skipped++; return; }
   const [cx, cz] = centroid(ring);
   if (nearRoad(cx, cz, 3) && A < 150) { skipped++; return; } // slivers lying on the centerline
+  if (cz < Z_SPLIT) { northFp++; if (northFp % 4 !== 0) { skipped++; return; } } // Zone B: 1 in 4 buildings
   const coords = ring.slice(0, -1).map(([x, z]) => x + ',' + z).join(',');
   footprints.push([KIND_BY_TAG(tags || {}), 0, 0, coords]);
 };
@@ -350,6 +366,7 @@ for (let bi = 0; bi < cleanBlocks.length; bi++) {
   const blk = cleanBlocks[bi];
   const A = Math.abs(area2(blk));
   if (A < 150) continue;
+  if (centroid(blk)[1] < Z_SPLIT) continue; // Zone B: no procedural gap-fill (sparse by design)
   let cov = 0;
   const inside = [];
   for (const f of fpMeta) if (inPoly(f.c[0], f.c[1], blk)) { cov += f.A; inside.push(f); }
