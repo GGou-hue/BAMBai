@@ -101,8 +101,10 @@ BAMBai-STORY-PHASES.md   # S0–S11 execution log
 - ✅ 12 side missions to spec (Koli Myths gates Ch 6 · Bog Ride time-trial + trophy badge · Match Fix + cricketSeason2 · Rooftops fast-travel · 8 more) — all offered + verified complete in headless Edge
 - ✅ Full 20-chapter campaign probe **PASS for arjun, meera, aarav** — 48 missions → chapter 21, every chapter card fires, ending calculator returns an ending, zero page errors
 - ✅ S10 side mission probe **PASS — 12/12 offered and completed**, zero page errors
-- ⏳ Parallel map session: Central Line Zone B (Dadar→Sion→Kurla) OSM pipeline
-- ⏳ Pending: human VO re-record (SAPI voices work but are synthetic), HUD debt ticker (bow out), UI-BADGE-17 art ("Bambai Bhairavi" badge def is wired; the .webp art is pending)
+- ✅ **HUD debt ticker** — `DEBT ₹2,00,000` shows next to the wallet (inline-styled, no CSS-bundle change); wired from `save.debt` at boot
+- ✅ **req:'koli' gate runtime-verified** — ch6 harbour missions (peg-truck / night-net) hidden at Koli bond 0, offered at bond 3 (`probe-s11`, zero page errors)
+- ⏳ Parallel map session: Central Line Zone B (Dadar→Sion→Kurla) OSM pipeline — Zone B not yet in `vendor/map.js`; missions currently play on Zone A with fictionalized relocation
+- ⏳ Pending: human VO re-record (SAPI voices work but are synthetic), lead GLBs for Aarav/Naina/Meera (Meera = `saree` placeholder), UI-BADGE-17 art ("Bambai Bhairavi" badge def is wired with fallback art path; the `.webp` asset is pending)
 
 ## Credits
 
